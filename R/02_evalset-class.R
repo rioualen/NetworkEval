@@ -13,7 +13,7 @@
 
 setClass(
   "evalset",
-  contains=c("set", "cset", "pset"),
+  # contains=c("set", "cset", "pset"),
   slots = list(
     pos_set = "cset",
     neg_set = "cset",
@@ -38,7 +38,7 @@ setClass(
 #' @export
 
 evalset <-  function(pos_set, neg_set, pred_set) {
-  stopifnot(is.data.frame(ris))
+  # stopifnot(is.data.frame(ris))
   stopifnot(identical(get_tfs(pos_set), get_tfs(neg_set)))
   stopifnot(identical(get_tfs(pos_set), get_tfs(pred_set)))
 

@@ -12,6 +12,20 @@ A character vector.
 \description{
 Get TU first genes from RegulonDB. Note: the RegulonDB files have to be previously downloaded (to be included in setup - maybe a makefile?).
 }
+\details{
+#' @title Get genes from Ensembl
+#' @description Get genes from Ensembl. Note: I custom-made the currently available file. Should be inddcluded in future makefile.
+#' @author Claire Rioualen
+#' @return A character vector.
+#' @export
+get_ensembl_genes <- function() {
+
+  genes_df <- read.delim("data/ensembl/gene.tab", header=T, sep="\t", comment.char = "#", stringsAsFactors = F)
+  genes <- unique(sort(genes_df$name))
+
+  genes
+}
+}
 \author{
 Claire Rioualen
 }

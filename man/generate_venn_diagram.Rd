@@ -4,10 +4,10 @@
 \alias{generate_venn_diagram}
 \title{Generate a Venn diagram using the eulerr package.}
 \usage{
-generate_venn_diagram(evalset, style = 1, universe = FALSE)
+generate_venn_diagram(x, style, universe)
 }
 \arguments{
-\item{evalset}{A list of Set objects.}
+\item{x}{A list of Set objects.}
 
 \item{style}{An option in c(1, 2, 3). Default to 1 (classic venn plot)}
 

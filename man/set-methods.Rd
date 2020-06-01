@@ -3,6 +3,7 @@
 \docType{methods}
 \name{show}
 \alias{show}
+\alias{show,set-methods}
 \alias{show,set-method}
 \alias{get_ris}
 \alias{get_ris,set-methods}
@@ -19,7 +20,7 @@
 \alias{setdiff_by_ris}
 \alias{setdiff_by_ris,set-method}
 \alias{get_sets}
-\alias{get_sets,set-method}
+\alias{get_sets,set-methods}
 \title{The show methods for set objects}
 \usage{
 show(x)
@@ -48,6 +49,10 @@ get_sets(x)
 \item{x}{An `evalset` object}
 
 \item{y}{A `set` object}
+
+\item{cset}{A `cset` object}
+
+\item{pset}{A `pset` object}
 }
 \value{
 A df
@@ -67,6 +72,9 @@ A [set][NetworkEval::set] object.
 A list of `set` objets.
 }
 \description{
+
+}
+\details{
 #' @name get_tfs_n
 #' @aliases get_tf,set-method
 #' @param x An `evalset` object

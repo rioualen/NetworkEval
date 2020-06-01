@@ -1,0 +1,115 @@
+---
+title: "Network evaluation report"
+output:
+ html_document:
+   code_folding: hide
+   fig_caption: yes
+   highlight: zenburn
+   self_contained: yes
+   theme: cerulean
+   toc: yes
+   toc_depth: 1
+   toc_float: yes
+   number_sections: true
+ word_document: default
+ pdf_document:
+   fig_caption: yes
+   highlight: zenburn
+   toc: yes
+   toc_depth: 3
+date: '`r Sys.Date()`'
+author: 'Claire Rioualen'
+params:
+  evalset: !r my_eval
+---
+
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 16px;
+  }
+</style>
+
+
+```{r setup, eval=TRUE, echo=FALSE, results='hide', include=FALSE, warnings=FALSE}
+Sys.getenv("PATH")
+knitr::opts_knit$set(root.dir = "/Users/rioualen/Desktop/NetworkEval/")
+knitr::opts_chunk$set(echo=FALSE, include=TRUE, warning=FALSE, message=FALSE, results = 'asis')
+
+library(kableExtra)
+```
+
+# Control sets
+
+* Summary of the positive set
+
+```{r control-sets-1}
+kable(summarize(my_eval@pos_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+
+# cat("<b>List of TFs: </b>")
+# cat(paste0((get_tfs(my_eval@pos_set)), collapse = ", "))
+```
+
+* Summary of the negative set
+
+```{r control-sets-2}
+kable(summarize(my_eval@neg_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+
+# cat("<b>List of TFs: </b>")
+# cat(paste0((get_tfs(my_eval@neg_set)), collapse = ", "))
+```
+
+# Prediction set
+
+* Summary of the input prediction set
+
+```{r pred-set-1}
+kable(summarize(my_eval@pred_set), digits=2, format.args = list(big.mark = ','))  %>% kable_styling(full_width = F)
+
+# cat("<b>List of TFs: </b>")
+# cat(paste0((get_tfs(my_eval@pred_set)), collapse = ", "))
+```
+
+# Evaluation of predicted set
+
+* TFs evaluated
+
+```{r evalset-1}
+cat(paste0((get_tfs_eval(my_eval)), collapse = ", "))
+```
+
+* TFs discarded: 
+
+
+* Statistics of the input prediction set
+
+```{r evalset-2}
+kable(summarize_stats(my_eval), digits=3, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+```
+
+* Confusion matrix
+
+```{r evalset-3}
+kable(generate_confusion_matrix(my_eval), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+```
+
+* Number of interactions not evaluated: `r get_ris_n(outer_set(my_eval))`
+
+* Proportion of interactions not evaluated: `r round(get_ris_n(outer_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1)`%
+
+## Venn diagrams
+
+* Comparison of sets
+
+```{r evalset-4}
+generate_venn_diagram(my_eval, style=1, universe=FALSE)
+generate_venn_diagram(my_eval, style=2, universe=FALSE)
+```
+
+* Comparison of sets -- including all possible interactions
+
+```{r evalset-5}
+generate_venn_diagram(my_eval, style=1, universe=TRUE)
+generate_venn_diagram(my_eval, style=2, universe=TRUE)
+```

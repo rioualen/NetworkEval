@@ -4,83 +4,84 @@
 
 #' @title The show methods for set objects
 #' @name show
-#' @aliases show,set-method
+#' @aliases show,set-methods
 #' @param x A `set` object
 #' @docType methods
 #' @rdname set-methods
 #' @export
 setGeneric("show",
-           function(object){
+           function(x){
              standardGeneric("show")
            }
 )
 setMethod("show",
-          "set",
-          function(object) {
+          signature(x = "set"),
+          function(x) {
             cat("<List of interactions>\n")
-            cat("First 10 entries of ", nrow(object@ris), "\n")
-            print(object@ris[1:10,])
+            cat("First 10 entries of ", nrow(x@ris), "\n")
+            print(x@ris[1:10,])
             cat("<List of transcription factors>\n")
-            cat("First 10 entries of ", length(object@tfs), "\n")
-            print(object@tfs[1:10])
+            cat("First 10 entries of ", length(x@tfs), "\n")
+            print(x@tfs[1:10])
           }
 )
 
 #' @title The show methods for cset objects
 #' @name show
 #' @aliases show,set-method
-#' @param x A `cset` object
+#' @param cset A `cset` object
 #' @docType methods
 #' @rdname set-methods
 #' @export
 setGeneric("show",
-           function(object){
+           function(x){
              standardGeneric("show")
            }
 )
 setMethod("show",
-          "cset",
-          function(object) {
+          signature(x = "cset"),
+          function(x) {
             cat("<List of interactions>\n")
-            cat("First 10 entries of ", nrow(object@ris), "\n")
-            print(object@ris[1:10,])
+            cat("First 10 entries of ", nrow(x@ris), "\n")
+            print(x@ris[1:10,])
             cat("<List of transcription factors>\n")
-            cat("First 10 entries of ", length(object@tfs), "\n")
-            print(object@tfs[1:10])
+            cat("First 10 entries of ", length(x@tfs), "\n")
+            print(x@tfs[1:10])
             cat("<Type of set>\n")
-            cat(object@type, "\n")
+            cat(x@type, "\n")
             cat("<ID of set>\n")
-            cat(object@id, "\n")
+            cat(x@id, "\n")
           }
 )
 
 #' @title The show methods for pset objects
 #' @name show
 #' @aliases show,set-method
-#' @param x A `pset` object
+#' @param pset A `pset` object
 #' @docType methods
 #' @rdname set-methods
 #' @export
 setGeneric("show",
-           function(object){
+           function(x){
              standardGeneric("show")
            }
 )
 setMethod("show",
-          "pset",
-          function(object) {
+          signature(x = "pset"),
+          function(x) {
             cat("<List of interactions>\n")
-            cat("First 10 entries of ", nrow(object@ris), "\n")
-            print(object@ris[1:10,])
+            cat("First 10 entries of ", nrow(x@ris), "\n")
+            print(x@ris[1:10,])
             cat("<List of transcription factors>\n")
-            cat("First 10 entries of ", length(object@tfs), "\n")
-            print(object@tfs[1:10])
+            cat("First 10 entries of ", length(x@tfs), "\n")
+            print(x@tfs[1:10])
             cat("<List of scores>\n")
-            cat("First 10 entries of ", nrow(object@scores), "\n")
-            print(object@scores[1:10,])
+            cat("First 10 entries of ", nrow(x@scores), "\n")
+            print(x@scores[1:10,])
           }
 )
 
+#' @name summarize
 #' @title Generate a dataframe of sets properties.
 #' @description Generate a dataframe of sets properties.
 #' @author Claire Rioualen
@@ -96,7 +97,7 @@ setMethod(
   "summarize",
   signature(x = "set"),
   function(x) {
-    data.frame(RI_number = get_ris_n(x), TF_number = get_tfs_n(x))
+    data.frame(number_of_regulatory_interactions = get_ris_n(x), number_of_TFs = get_tfs_n(x))
   })
 
 #================================================================
@@ -203,7 +204,7 @@ setMethod(
 #' @import dplyr
 #' @export
 setGeneric("intersect_by_ris",
-           valueClass = "integer",
+           valueClass = "set",
            function(x, y){
              standardGeneric("intersect_by_ris")
            })
@@ -230,7 +231,7 @@ setMethod(
 #' @import dplyr
 #' @export
 setGeneric("union_by_ris",
-           valueClass = "integer",
+           valueClass = "set",
            function(x, y){
              standardGeneric("union_by_ris")
            })
@@ -258,7 +259,7 @@ setMethod(
 #' @import dplyr
 #' @export
 setGeneric("setdiff_by_ris",
-           valueClass = "integer",
+           valueClass = "set",
            function(x, y){
              standardGeneric("setdiff_by_ris")
            }

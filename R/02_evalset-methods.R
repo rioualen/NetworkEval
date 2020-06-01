@@ -2,52 +2,52 @@
 # Evalset methods: show & summarize
 #================================================================
 
-#' @name show
-#' @title
-#' @aliases show,evalset-method
-#' @param x An `evalset` object
-#' @docType methods
-#' @rdname evalset-methods
-#' @export
-setGeneric("show",
-           valueClass = "",
-           function(x){
-             standardGeneric("show")
-           })
-setMethod("show",
-          "evalset",
-          function(x) {
-            cat("\n<Positive set>\n\n")
-            show(x@pos_set)
-            cat("\n<Negative set>\n\n")
-            show(x@neg_set)
-            cat("\n<Predicted set>\n\n")
-            show(x@pred_set)
-            cat("<List of transcription factors>\n")
-            cat("First 10 entries of ", length(x@tfs), "\n")
-            print(x@tfs[1:10])
-          }
-)
+#' #' @name show
+#' #' @title
+#' #' @aliases show,evalset-method
+#' #' @param x An `evalset` object
+#' #' @docType methods
+#' #' @rdname evalset-methods
+#' #' @export
+#' setGeneric("show",
+#'            valueClass = "",
+#'            function(x){
+#'              standardGeneric("show")
+#'            })
+#' setMethod("show",
+#'           signature(x = "evalset"),
+#'           function(x) {
+#'             cat("\n<Positive set>\n\n")
+#'             show(x@pos_set)
+#'             cat("\n<Negative set>\n\n")
+#'             show(x@neg_set)
+#'             cat("\n<Predicted set>\n\n")
+#'             show(x@pred_set)
+#'             cat("<List of transcription factors>\n")
+#'             cat("First 10 entries of ", length(x@tfs), "\n")
+#'             print(x@tfs[1:10])
+#'           }
+#' )
 
-#' @name summarize
+#' @name summarize_stats
 #' @title Generate a table of stats for a given evalset object.
 #' @description Generate a table of stats for a given evalset object: sensitivity, specificity, etc.
 #' @author Claire Rioualen
 #' @param evalset An `evalset` object.
 #' @return A dataframe.
 #' @export
-setGeneric("summarize",
+setGeneric("summarize_stats",
            valueClass = "data.frame",
            function(x){
-             standardGeneric("summarize")
+             standardGeneric("summarize_stats")
            })
 setMethod(
-  "summarize",
+  "summarize_stats",
   signature(x = "evalset"),
   function(x) {
-    sensitivity <- sensitivity(evalset)
-    specificity <- specificity(evalset)
-    precision <- precision(evalset)
+    sensitivity <- sensitivity(x)
+    specificity <- specificity(x)
+    precision <- precision(x)
 
     data.frame(sensitivity, specificity, precision, stringsAsFactors = F)
   }
@@ -57,26 +57,26 @@ setMethod(
 # Evalset methods: accessors
 #================================================================
 
-#' #' @name get_tfs
-#' #' @title
-#' #' @aliases get_tf,set-method
-#' #' @param x An `evalset` object
-#' #' @docType methods
-#' #' @rdname set-methods
-#' #' @return A character vector
-#' #' @export
-#' setGeneric("get_tfs",
-#'            valueClass = "character",
-#'            function(x){
-#'              standardGeneric("get_tfs")
-#'            })
-#' setMethod(
-#'   "get_tfs",
-#'   signature(x = "evalset"),
-#'   function(x) {
-#'     x@tfs
-#'   }
-#' )
+#' @name get_tfs_eval
+#' @title Accessor function to get list of TFs fron evalset objet.
+#' @aliases get_tf,set-method
+#' @param x An `evalset` object
+#' @docType methods
+#' @rdname set-methods
+#' @return A character vector
+#' @export
+setGeneric("get_tfs_eval",
+           valueClass = "character",
+           function(x){
+             standardGeneric("get_tfs_eval")
+           })
+setMethod(
+  "get_tfs_eval",
+  signature(x = "evalset"),
+  function(x) {
+    x@tfs
+  }
+)
 #'
 #' #' @name get_tfs_n
 #' #' @aliases get_tf,set-method
@@ -99,26 +99,25 @@ setMethod(
 #' )
 
 #' @name get_sets
-#' @aliases get_sets,set-method
+#' @aliases get_sets,set-methods
 #' @param x An `evalset` object
 #' @docType methods
 #' @rdname set-methods
 #' @return A list of `set` objets.
 #' @export
 setGeneric("get_sets",
-           valueClass = "character",
+           valueClass = "list",
            function(x){
              standardGeneric("get_sets")
-           })
+           }
+)
 setMethod(
   "get_sets",
   signature(x = "evalset"),
   function(x) {
-    list(Positive_set=x@pos_set, Negative_set=x@neg_set, Predicted_set=x@pred_set)
+    list(pos_set=x@pos_set, neg_set=x@neg_set, pred_set=x@pred_set)
   }
 )
-
-## should be one accessor per set get_neg_set, get_pos_set, ¡ect
 
 #================================================================
 # Evalset methods: base statistics
@@ -162,7 +161,7 @@ setMethod(
   "false_pos",
   signature(x = "evalset"),
   function(x) {
-    get_ris_n(intersect(x@neg_set, x@pred_set))
+    get_ris_n(intersect_by_ris(x@neg_set, x@pred_set))
   }
 )
 
@@ -183,7 +182,7 @@ setMethod(
   "true_neg",
   signature(x = "evalset"),
   function(x) {
-    get_ris_n(x@neg_set) - get_ris_n(intersect(x@neg_set, x@pred_set))
+    get_ris_n(x@neg_set) - get_ris_n(intersect_by_ris(x@neg_set, x@pred_set))
   }
 )
 
@@ -204,7 +203,7 @@ setMethod(
   "false_neg",
   signature(x = "evalset"),
   function(x) {
-    get_ris_n(x@pos_set) - get_ris_n(intersect(x@pos_set, x@pred_set))
+    get_ris_n(x@pos_set) - get_ris_n(intersect_by_ris(x@pos_set, x@pred_set))
   }
 )
 
@@ -225,7 +224,7 @@ setMethod(
   "pred_pos",
   signature(x = "evalset"),
   function(x) {
-    get_ris_n(intersect(x@pos_set, x@pred_set)) + get_ris_n(intersect(x@neg_set, x@pred_set))
+    get_ris_n(intersect_by_ris(x@pos_set, x@pred_set)) + get_ris_n(intersect_by_ris(x@neg_set, x@pred_set))
   }
 )
 
@@ -246,7 +245,7 @@ setMethod(
   "pred_neg",
   signature(x = "evalset"),
   function(x) {
-    get_ris_n(x@pos_set) + get_ris_n(x@neg_set) - ( get_ris_n(intersect(x@pos_set, x@pred_set)) + get_ris_n(intersect(x@neg_set, x@pred_set)) )
+    get_ris_n(x@pos_set) + get_ris_n(x@neg_set) - ( get_ris_n(intersect_by_ris(x@pos_set, x@pred_set)) + get_ris_n(intersect_by_ris(x@neg_set, x@pred_set)) )
   }
 )
 
@@ -319,7 +318,7 @@ setMethod(
 #' @param x An `evalset` object
 #' @docType methods
 #' @rdname evalset-methods
-#' @return An numeric
+#' @return A numeric
 #' @export
 setGeneric("sensitivity",
            valueClass = "numeric",
@@ -340,7 +339,7 @@ setMethod(
 #' @param x An `evalset` object
 #' @docType methods
 #' @rdname evalset-methods
-#' @return An numeric
+#' @return A numeric
 #' @export
 setGeneric("specificity",
            valueClass = "numeric",
@@ -420,7 +419,7 @@ setMethod(
   "outer_set",
   signature(x = "evalset"),
   function(x) {
-    outer_set <- NetworkEval::setdiff(NetworkEval::setdiff(x@pred_set, x@pos_set), x@neg_set)
+    outer_set <- setdiff_by_ris(setdiff_by_ris(x@pred_set, x@pos_set), x@neg_set)
   }
 )
 
@@ -441,7 +440,7 @@ setMethod(
   "get_universe",
   signature(x = "evalset"),
   function(x) {
-    tfs <- get_tfs(x)
+    tfs <- get_tfs_eval(x)
     genes <- get_regulondb_genes()
 
     all_combinations <- expand.grid(tfs, genes, stringsAsFactors = F)
@@ -462,10 +461,11 @@ setMethod(
 #' @title Generate a confusion matrix for a given evalset object.
 #' @description Generate a confusion matrix for a given evalset object, composed of a `pset` to be evaluated and a positive and a negative
 #' @author Claire Rioualen
-#' @param evalset An `evalset` object.
+#' @param x An `evalset` object.
 #' @return A dataframe.
 #' @export
 setGeneric("generate_confusion_matrix",
+           valueClass = "data.frame",
            function(x){
              standardGeneric("generate_confusion_matrix")
            }
@@ -474,9 +474,9 @@ setMethod("generate_confusion_matrix",
   signature(x = "evalset"),
   function(x) {
     # validObject(evalset)
-    control_positive <- c(true_pos(evalset), false_neg(evalset), actual_pos(evalset))
-    control_negative <- c(false_pos(evalset), true_neg(evalset), actual_neg(evalset))
-    total_population <- c(pred_pos(evalset), pred_neg(evalset), total_pop(evalset))
+    control_positive <- c(true_pos(x), false_neg(x), actual_pos(x))
+    control_negative <- c(false_pos(x), true_neg(x), actual_neg(x))
+    total_population <- c(pred_pos(x), pred_neg(x), total_pop(x))
     df <- data.frame(control_positive, control_negative, total_population, stringsAsFactors = F)
     row.names(df) <- c("predicted_positive", "predicted_negative", "total_control")
     df
@@ -510,32 +510,41 @@ generate_pr_curve <- function(evalset) {
 #' @title Generate a Venn diagram using the eulerr package.
 #' @description Generate a Venn diagram given a list of Set objects.
 #' @author Claire Rioualen
-#' @param evalset A list of Set objects.
+#' @param x An evalset object
 #' @param style An option in c(1, 2, 3). Default to 1 (classic venn plot)
 #' @param universe A logical indicating wether to plot universe of interactions. Defaults to FALSE.
 #' @return A plot.
 #' @export
 #' @import eulerr
-generate_venn_diagram <- function(evalset, style=1, universe=FALSE) {
+setGeneric("generate_venn_diagram",
+           valueClass = "eulergram",
+           function(x, style, universe){
+             standardGeneric("generate_venn_diagram")
+           }
+)
+setMethod("generate_venn_diagram",
+          signature(x = "evalset"),
+          function(x, style=1, universe=FALSE) { ## default do not work?
 
-  data <- list()
-  for (n in names(get_sets(evalset))) {
-    data[[n]] <- paste0(evalset[[n]]@ris$tf_symbol, "_", evalset[[n]]@ris$gene_symbol)
-  }
-  if (universe==TRUE){
-    universe <- get_universe(evalset)
-    data[["Universe"]] <- paste0(universe@ris$tf_symbol, "_", universe@ris$gene_symbol)
-  }
+            data <- list()
+            for (n in names(get_sets(x))) {
+              data[[n]] <- paste0(slot(x, n)@ris$tf_symbol, "_", slot(x, n)@ris$gene_symbol)
+            }
+            if (universe==TRUE){
+              universe <- get_universe(x)
+              data[["universe"]] <- paste0(universe@ris$tf_symbol, "_", universe@ris$gene_symbol)
+            }
 
-  if (style == 1) {
-    graph <- venn(data)
-  } else if (style == 2) {
-    graph <- euler(data, shape = "circle")
-  }  else if (style == 3) {
-    graph <- euler(data, shape = "ellipse")
-  }
-  plot(graph, quantities = TRUE)
-}
+            if (style == 1) {
+              graph <- venn(data)
+            } else if (style == 2) {
+              graph <- euler(data, shape = "circle")
+            }  else if (style == 3) {
+              graph <- euler(data, shape = "ellipse")
+            }
+            plot(graph, quantities = TRUE)
+          }
+)
 
 #================================================================
 # Evalset methods: generate report

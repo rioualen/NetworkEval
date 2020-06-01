@@ -13,7 +13,7 @@
 #' @export
 get_regulondb_tfs <- function() {
 
-  tfs_df <- read.delim("data/regulondb/TFSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
+  tfs_df <- read.delim("regulondb/TFSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
   tfs <- unique(sort(tfs_df$V3))
   tfs <- tfs[!tfs %in% c("", "3'ETS<sup><i>leuZ</i></sup>")] ## should disappear once once we have a proper way to handle tfs
 
@@ -27,25 +27,25 @@ get_regulondb_tfs <- function() {
 #' @export
 get_regulondb_genes <- function() {
 
-  genes_df <- read.delim("data/regulondb/GeneProductSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
+  genes_df <- read.delim("regulondb/GeneProductSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
   genes <- unique(sort(genes_df$V2))
   genes <- genes[!genes %in% c("", "3'ETS<sup><i>leuZ</i></sup>")] ## should disappear once once we have a proper way to handle genes
 
   genes
 }
 
-#' @title Get genes from Ensembl
-#' @description Get genes from Ensembl. Note: I custom-made the currently available file. Should be inddcluded in future makefile.
-#' @author Claire Rioualen
-#' @return A character vector.
-#' @export
-get_ensembl_genes <- function() {
-
-  genes_df <- read.delim("data/ensembl/gene.tab", header=T, sep="\t", comment.char = "#", stringsAsFactors = F)
-  genes <- unique(sort(genes_df$name))
-
-  genes
-}
+#' #' @title Get genes from Ensembl
+#' #' @description Get genes from Ensembl. Note: I custom-made the currently available file. Should be inddcluded in future makefile.
+#' #' @author Claire Rioualen
+#' #' @return A character vector.
+#' #' @export
+#' get_ensembl_genes <- function() {
+#'
+#'   genes_df <- read.delim("data/ensembl/gene.tab", header=T, sep="\t", comment.char = "#", stringsAsFactors = F)
+#'   genes <- unique(sort(genes_df$name))
+#'
+#'   genes
+#' }
 
 #' @title Get first genes of TUs from RegulonDB
 #' @description Get TU first genes from RegulonDB. Note: the RegulonDB files have to be previously downloaded (to be included in setup - maybe a makefile?).
@@ -54,7 +54,7 @@ get_ensembl_genes <- function() {
 #' @export
 get_regulondb_tu_first_gene <- function() {
 
-  tus_df <- read.delim("data/regulondb/TUSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
+  tus_df <- read.delim("regulondb/TUSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
   genes <- c()
   for (i in 1:nrow(tus_df)) {
     genes <- as.character(tus_df$V4[i])

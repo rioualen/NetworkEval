@@ -7,7 +7,7 @@
 generate_confusion_matrix(x)
 }
 \arguments{
-\item{evalset}{An `evalset` object.}
+\item{x}{An `evalset` object.}
 }
 \value{
 A dataframe.
