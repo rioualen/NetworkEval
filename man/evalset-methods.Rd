@@ -30,6 +30,7 @@
 \alias{fdr,evalset-method}
 \alias{outer_set}
 \alias{outer_set,evalset-method}
+\alias{inner_set}
 \title{}
 \usage{
 true_pos(x)
@@ -59,6 +60,8 @@ precision(x)
 fdr(x)
 
 outer_set(x)
+
+inner_set(x)
 }
 \arguments{
 \item{x}{An `evalset` object}
@@ -91,8 +94,13 @@ An numeric
 An numeric
 
 A `set` object
+
+A `set` object
 }
 \description{
+Get the set of RIs in the prediction set that are not in either control set,
+and thus not taken into account for classic statistics computation
+
 Get the set of RIs in the prediction set that are not in either control set,
 and thus not taken into account for classic statistics computation
 }

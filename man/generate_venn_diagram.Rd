@@ -7,7 +7,7 @@
 generate_venn_diagram(x, style, universe)
 }
 \arguments{
-\item{x}{A list of Set objects.}
+\item{x}{An evalset object}
 
 \item{style}{An option in c(1, 2, 3). Default to 1 (classic venn plot)}
 

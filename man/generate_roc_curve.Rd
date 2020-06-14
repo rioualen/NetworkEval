@@ -4,7 +4,7 @@
 \alias{generate_roc_curve}
 \title{Generate a ROC curve for a given evalset object.}
 \usage{
-generate_roc_curve(evalset)
+generate_roc_curve(x)
 }
 \arguments{
 \item{evalset}{An evalset object.}
