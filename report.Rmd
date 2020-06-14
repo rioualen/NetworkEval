@@ -8,7 +8,7 @@ output:
    self_contained: yes
    theme: cerulean
    toc: yes
-   toc_depth: 1
+   toc_depth: 2
    toc_float: yes
    number_sections: true
  word_document: default
@@ -42,19 +42,19 @@ library(kableExtra)
 
 # Control sets
 
-* Summary of the positive set
+## Summary of the positive set
 
 ```{r control-sets-1}
-kable(summarize(my_eval@pos_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+kable(summarize(my_eval@pos_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 20)
 
 # cat("<b>List of TFs: </b>")
 # cat(paste0((get_tfs(my_eval@pos_set)), collapse = ", "))
 ```
 
-* Summary of the negative set
+## Summary of the negative set
 
 ```{r control-sets-2}
-kable(summarize(my_eval@neg_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+kable(summarize(my_eval@neg_set), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 20)
 
 # cat("<b>List of TFs: </b>")
 # cat(paste0((get_tfs(my_eval@neg_set)), collapse = ", "))
@@ -62,10 +62,10 @@ kable(summarize(my_eval@neg_set), digits=2, format.args = list(big.mark = ',')) 
 
 # Prediction set
 
-* Summary of the input prediction set
+## Summary of the input prediction set
 
 ```{r pred-set-1}
-kable(summarize(my_eval@pred_set), digits=2, format.args = list(big.mark = ','))  %>% kable_styling(full_width = F)
+kable(summarize(my_eval@pred_set), digits=2, format.args = list(big.mark = ','))  %>% kable_styling(full_width = F, font_size = 20)
 
 # cat("<b>List of TFs: </b>")
 # cat(paste0((get_tfs(my_eval@pred_set)), collapse = ", "))
@@ -73,25 +73,25 @@ kable(summarize(my_eval@pred_set), digits=2, format.args = list(big.mark = ','))
 
 # Evaluation of predicted set
 
-* TFs evaluated
+## TFs evaluated
 
 ```{r evalset-1}
 cat(paste0((get_tfs_eval(my_eval)), collapse = ", "))
 ```
 
-* TFs discarded: 
+## TFs discarded: 
 
 
-* Statistics of the input prediction set
+## Statistics of the input prediction set
 
 ```{r evalset-2}
-kable(summarize_stats(my_eval), digits=3, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+kable(summarize_stats(my_eval), digits=3, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 20)
 ```
 
-* Confusion matrix
+## Confusion matrix
 
 ```{r evalset-3}
-kable(generate_confusion_matrix(my_eval), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F)
+kable(generate_confusion_matrix(my_eval), digits=2, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 20)
 ```
 
 * Number of interactions not evaluated: `r get_ris_n(outer_set(my_eval))`
@@ -100,16 +100,34 @@ kable(generate_confusion_matrix(my_eval), digits=2, format.args = list(big.mark 
 
 ## Venn diagrams
 
-* Comparison of sets
+### Comparison of sets
 
 ```{r evalset-4}
 generate_venn_diagram(my_eval, style=1, universe=FALSE)
 generate_venn_diagram(my_eval, style=2, universe=FALSE)
 ```
 
-* Comparison of sets -- including all possible interactions
+### Comparison of sets -- including all possible interactions
 
 ```{r evalset-5}
 generate_venn_diagram(my_eval, style=1, universe=TRUE)
 generate_venn_diagram(my_eval, style=2, universe=TRUE)
+```
+
+## Curves
+
+### ROC curve
+
+NB: curve based on `r round(get_ris_n(inner_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1)`% of the data.
+
+```{r evalset-6}
+generate_roc_curve(my_eval)
+```
+
+### Precision-Recall curve
+
+NB: curve based on `r round(get_ris_n(inner_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1)`% of the data.
+
+```{r evalset-7}
+generate_pr_curve(my_eval)
 ```

@@ -423,6 +423,29 @@ setMethod(
   }
 )
 
+#' @name inner_set
+#' @title
+#' @aliases outer_set,evalset-method
+#' @description Get the set of RIs in the prediction set that are not in either control set,
+#' and thus not taken into account for classic statistics computation
+#' @param x An `evalset` object
+#' @docType methods
+#' @rdname evalset-methods
+#' @return A `set` object
+#' @export
+setGeneric("inner_set",
+           valueClass = "set",
+           function(x){
+             standardGeneric("inner_set")
+           })
+setMethod(
+  "inner_set",
+  signature(x = "evalset"),
+  function(x) {
+    inner_set <- union_by_ris(intersect_by_ris(x@pred_set, x@pos_set), intersect_by_ris(x@pred_set, x@neg_set))
+  }
+)
+
 #' @name get_universe
 #' @title Get universe of regulatory interactions
 #' @description Get set of all possible RIs given the evalset list of TFs and all genes in RegulonDB (!= genes in ensembl)
@@ -489,11 +512,42 @@ setMethod("generate_confusion_matrix",
 #' @author Claire Rioualen
 #' @param evalset An evalset object.
 #' @return A plot.
+#' @import ROCR
 #' @export
-generate_roc_curve <- function(evalset) {
-  ## TODO
-}
+setGeneric("generate_roc_curve",
+           valueClass = "NULL",
+           function(x){
+             standardGeneric("generate_roc_curve")
+           }
+)
+setMethod("generate_roc_curve",
+          signature(x = "evalset"),
+          function(x) {
+            pos <- x@pos_set@ris
+            neg <- x@neg_set@ris
+            pred <- x@pred_set@ris
+            scores <- x@pred_set@scores
 
+            labels <- c()
+            for (i in 1:nrow(pred)) {
+              t <- pred[i,, drop=FALSE]
+              if (nrow(dplyr::intersect(t, pos)) == 1){
+                labels <- c(labels, 1)
+              } else if (nrow(dplyr::intersect(t, neg)) == 1) {
+                labels <- c(labels, 0)
+              } else {
+                labels <- c(labels, NA)
+              }
+            }
+            df <- cbind.data.frame(scores, labels)
+            df <- na.omit(df)
+
+            pred <- prediction(df$scores, df$labels)
+
+            perf <- performance(pred,"tpr","fpr")
+            plot(perf,colorize=TRUE)
+          }
+)
 
 #' @name generate_pr_curve
 #' @title Generate a precision-recall curve for a given evalset object.
@@ -501,10 +555,42 @@ generate_roc_curve <- function(evalset) {
 #' @author Claire Rioualen
 #' @param evalset An evalset object.
 #' @return A plot.
+#' @import ROCR
 #' @export
-generate_pr_curve <- function(evalset) {
-  ## TODO
-}
+setGeneric("generate_pr_curve",
+           valueClass = "NULL",
+           function(x){
+             standardGeneric("generate_pr_curve")
+           }
+)
+setMethod("generate_pr_curve",
+          signature(x = "evalset"),
+          function(x) {
+            pos <- x@pos_set@ris
+            neg <- x@neg_set@ris
+            pred <- x@pred_set@ris
+            scores <- x@pred_set@scores
+
+            labels <- c()
+            for (i in 1:nrow(pred)) {
+              t <- pred[i,, drop=FALSE]
+              if (nrow(dplyr::intersect(t, pos)) == 1){
+                labels <- c(labels, 1)
+              } else if (nrow(dplyr::intersect(t, neg)) == 1) {
+                labels <- c(labels, 0)
+              } else {
+                labels <- c(labels, NA)
+              }
+            }
+            df <- cbind.data.frame(scores, labels)
+            df <- na.omit(df)
+
+            pred <- prediction(df$scores, df$labels)
+
+            pr <- performance(pred,"prec","rec")
+            plot(pr,colorize=TRUE)
+          }
+)
 
 #' @name generate_venn_diagram
 #' @title Generate a Venn diagram using the eulerr package.

@@ -28,9 +28,9 @@ negative_set_tfs <- read.delim(file = paste0("test_sets/", neg_set_id, "/tfs.tsv
 negative_set <- cset(set(ris = negative_set_ris, tfs = negative_set_tfs), id = neg_set_id, type = "negative")
 
 
-predicted_set_ris <- read.delim(file = paste0("test_sets/", pred_set_id, "/ris.tsv"), stringsAsFactors=FALSE, header = T)
+predicted_set_ris <- read.delim(file = paste0("test_sets/", pred_set_id, "/ris.tsv"), stringsAsFactors=FALSE, header = T)[, c("tf_symbol", "gene_symbol")]
 predicted_set_tfs <- read.delim(file = paste0("test_sets/", pred_set_id, "/tfs.tsv"), stringsAsFactors=FALSE, header = T)$tf_symbol
-predicted_set_scores <- data.frame(runif(1000))
+predicted_set_scores <- read.delim(file = paste0("test_sets/", pred_set_id, "/ris.tsv"), stringsAsFactors=FALSE, header = T)$score
 predicted_set <- pset(set(ris = predicted_set_ris, tfs = predicted_set_tfs), scores = predicted_set_scores)
 
 # ## Testing set methods  -> should be moved to example section of each method
@@ -46,6 +46,7 @@ predicted_set <- pset(set(ris = predicted_set_ris, tfs = predicted_set_tfs), sco
 
 ## Build evalset object and get stats and confusion matrix
 my_eval <- evalset(positive_set, negative_set, predicted_set)
+
 
 # ## Testing evalset methods -> should be moved to example section of each method
 # summarize_stats(my_eval)
@@ -69,6 +70,7 @@ my_eval <- evalset(positive_set, negative_set, predicted_set)
 # generate_confusion_matrix(my_eval)
 # get_sets(my_eval)
 # generate_venn_diagram(my_eval, style=3, universe=FALSE)
+generate_roc_curve(my_eval)
 
 rmarkdown::render("report.Rmd", params = list(evalset = my_eval), output_file = paste0(pred_set_id, "-", pos_set_id, "-", neg_set_id, ".html"))
 
