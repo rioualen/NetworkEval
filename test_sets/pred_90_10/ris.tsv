@@ -1,1001 +1,1001 @@
-tf_symbol	gene_symbol
-nsrR	nrfD
-glnG	rseA
-iclR	iclR
-mntR	mntH
-nrdR	nrdE
-marA	rob
-glpR	glpC
-nanR	fimB
-fnr	cydA
-rutR	rutG
-cpxR	marB
-argP	lysC
-rutR	rutF
-fur	garR
-acrR	soxS
-flhC	fliD
-ydeO	hyaB
-glnG	astB
-cbl	ssuA
-fis	valU
-feaR	tynA
-narP	ydhY
-ihfA	dmsC
-mlrA	rplU
-tyrR	mtr
-feaR	feaB
-fnr	fnrS
-phoP	hdeB
-crp	rseC
-pdhR	cyoA
-cpxR	motB
-ihfB	hypD
-ihfB	focA
-mazE	mazG
-hupB	galE
-fis	rrfF
-nrdR	nrdG
-ihfB	ilvD
-hns	rcsB
-fis	osmE
-crp	prpE
-crp	murQ
-hdfR	gltB
-nac	ydcT
-fis	thrV
-araC	araD
-ihfA	hycB
-ulaR	ulaG
-fnr	napD
-fhlA	hycF
-rcsB	dctR
-narL	ogt
-fur	sufC
-argR	argC
-gntR	gntT
-narL	cysG
-rbsR	purH
-fadR	fabB
-ihfA	hypD
-envR	acrB
-soxS	nfsB
-crp	glnG
-lrp	cadB
-crp	rpoE
-hns	gadX
-ihfB	nrfF
-soxS	marA
-ihfB	paaB
-soxR	soxR
-ihfB	paaC
-fnr	nuoN
-crp	malE
-basR	qseC
-rbsR	rbsA
-ihfB	ilvL
-lrp	lysP
-hupA	galM
-glnG	glnQ
-fis	yfaE
-uvrY	ydeP
-oxyR	fhuF
-fnr	dmsC
-nac	patD
-hipB	mazE
-fnr	napH
-hns	gadE
-lexA	ptrA
-torR	tnaB
-nagC	chbG
-treR	treB
-narL	ydhU
-narP	ydeP
-crp	flhD
-crp	ulaC
-ihfB	nuoM
-hupA	galE
-gcvA	gcvT
-ilvY	ilvC
-ihfB	gltD
-crp	uxuA
-dcuR	frdB
-fnr	ccmH
-narL	narJ
-cpxR	csgC
-ihfB	hpt
-crp	ychH
-nikR	nikC
-basR	csgF
-putA	putP
-narP	ydhT
-flhC	fliH
-gadE	gltF
-gadX	yhiD
-lldR	lldD
-purR	purR
-narP	nrfC
-crp	yhcH
-hdfR	flhD
-ydeO	gadW
-ihfA	nuoI
-modE	moaA
-rob	micF
-iclR	aceB
-gntR	gntU
-bglJ	bglB
-csgD	fliK
-ihfA	glnP
-cbl	tauA
-fadR	accA
-fnr	nrdG
-cpxR	ygaU
-crp	gcd
-rhaS	rhaB
-fnr	nuoB
-lrp	osmY
-crp	paaZ
-crp	ascB
-fnr	narL
-cpxR	aroG
-xylR	xylG
-narP	dsbE
-narL	dcuA
-fis	nuoH
-ihfA	fis
-hipB	hipB
-purR	purM
-arcA	focA
-tyrR	tyrA
-hns	nrdD
-flhC	flhA
-rutR	rutE
-phoP	rstB
-fis	gyrB
-modE	hycD
-ihfA	nrfE
-xylR	xylF
-ihfB	nirC
-crp	aroA
-flhC	fliK
-fis	ileT
-fliZ	mdtE
-tdcR	tdcA
-ihfB	paaI
-flhD	fliK
-ihfB	cysI
-dnaA	recF
-ihfB	nuoN
-paaX	paaE
-ihfA	pstA
-pdhR	glcA
-lrp	ssrS
-relE	relB
-ihfA	hycG
-cueR	copA
-narP	fdnI
-fis	rrsA
-modE	napF
-pepA	carB
-hns	yhiD
-fis	ndh
-pdhR	glcE
-crp	lamB
-soxS	fur
-fnr	narG
-crp	gatA
-fnr	dmsB
-fis	nuoA
-lrp	aroA
-acrR	marR
-crp	paaA
-dnaA	aldA
-fur	fecR
-ihfB	paaZ
-crp	galT
-ompR	fadL
-ihfA	paaI
-crp	glpT
-fis	nuoN
-fis	tufB
-caiF	caiD
-hns	galE
-dnaA	polA
-nanR	yhcH
-phoB	phoU
-ihfB	nuoK
-ihfB	cysG
-gadX	hdeB
-ihfA	sufA
-argR	metY
-crp	nanM
-iscR	napA
-gadE	aslB
-evgA	mdtF
-birA	bioB
-cpxR	acrD
-puuR	puuD
-ihfA	tdcD
-ihfB	aceB
-caiF	caiB
-ihfB	narJ
-iscR	rnlA
-fur	fecI
-oxyR	oxyS
-acrR	acrR
-nrdR	nrdD
-narP	fdnG
-crp	proP
-crp	glgA
-mngR	mngA
-baeR	baeR
-pdhR	glcD
-tdcR	tdcE
-ihfB	tdcF
-malI	malI
-fliZ	csgD
-cytR	cytR
-ihfB	ilvM
-leuO	yjjQ
-crp	ulaB
-cpxR	mzrA
-crp	hupB
-ihfB	carB
-ihfB	ihfA
-ihfA	gltB
-arcA	ptsG
-chbR	chbB
-ihfA	fhlA
-metJ	metE
-nagC	chbA
-lsrR	lsrG
-argR	artP
-ihfB	ssuA
-arcA	glcA
-arcA	hyaF
-tdcA	tdcD
-phoB	yegH
-nsrR	nrfF
-hns	cydA
-ihfA	pspC
-flhD	fliE
-modE	hycF
-fnr	hcp
-crp	lsrR
-arcA	lldD
-ihfB	sufD
-crp	mglC
-fis	tyrT
-lexA	umuC
-crp	gntP
-ihfB	tdcA
-tdcA	tdcA
-purR	glyA
-fnr	ynfF
-fis	nrfE
-crp	glpA
-cpxR	ompC
-glpR	glpX
-ihfA	paaD
-lrp	rrlC
-crp	lacY
-betI	betB
-oxyR	sufS
-crp	ansB
-marA	hdeB
-dnaA	nrdB
-kdpE	kdpF
-modE	moaC
-ihfA	paaK
-hns	fimB
-phoP	yrbL
-ihfB	adiA
-ihfA	nrfF
-fnr	moeB
-crp	psiE
-fis	gltX
-crp	paaC
-uvrY	csrB
-phoB	ugpA
-cbl	tauD
-ihfB	glpT
-metR	hmp
-iscR	napG
-fnr	moeA
-ihfB	proX
-modE	hycC
-tdcR	tdcD
-lrp	rrsB
-fis	nuoM
-crp	malG
-kdpE	kdpC
-modE	hycE
-ihfB	paaA
-ihfA	narJ
-rhaR	rhaR
-cusR	cusC
-crp	lsrD
-cpxR	tsr
-crp	ugpE
-arcA	nuoA
-glnG	glnG
-fis	marR
-narL	frdD
-oxyR	ybjN
-ihfB	fnr
-gadX	gadA
-bolA	mreC
-narP	ydhU
-tdcR	tdcF
-ihfA	ndh
-ulaR	ulaF
-lrp	gltB
-crp	pflB
-betI	betI
-fis	mazE
-nanR	nanS
-hns	yciE
-ihfA	tdcC
-ihfB	nrfE
-crp	gatY
-chbR	chbC
-cadC	cadA
-nsrR	nrfC
-gadE	mdtF
-ihfA	hycA
-crp	tdcC
-ihfB	narK
-sgrR	sgrT
-crp	uhpT
-nikR	nikD
-trpR	mtr
-ihfA	nmpC
-bolA	mreD
-tdcR	tdcG
-ihfA	paaF
-narP	nirB
-atoC	atoB
-fnr	cysG
-fnr	hcr
-nhaR	pgaA
-ihfA	proW
-purR	purA
-ulaR	ulaA
-nadR	nadB
-mhpR	mhpF
-lexA	ybiB
-iscR	napD
-fhlA	hycC
-crp	deoA
-baeR	iceT
-ihfA	atoD
-evgA	yegR
-fis	rrsC
-narL	nrfD
-crp	chbG
-hns	leuO
-araC	araG
-ihfA	csgF
-ihfB	ihfB
-cpxR	csgD
-crp	malY
-ompR	csgE
-glcC	glcC
-ihfA	carA
-pdhR	cyoD
-marA	sodA
-csgD	csgF
-kdpE	kdpB
-crp	tdcD
-glpR	glpD
-oxyR	yjjZ
-lrp	fimG
-crp	cspE
-agaR	agaA
-crp	bglF
-flhD	yecR
-flhC	flgJ
-nrdR	nrdB
-rob	marR
-fur	fhuC
-phoP	hdeD
-modE	deoC
-narL	ydeP
-hns	flhD
-hns	csgF
-gntR	eda
-ihfA	dmsA
-crp	gadE
-ompR	ompC
-lexA	polB
-narP	nirD
-fis	rrfB
-fliZ	hdeA
-modE	ccmD
-mlrA	yhbE
-ihfA	nrfG
-fnr	ynfH
-fur	cirA
-crp	nanS
-cpxR	cpxQ
-fur	sufB
-hns	yciG
-soxS	ybjN
-birA	bioF
-ydeO	hyaE
-ihfB	pspB
-crp	aldB
-purR	hflD
-phoB	psiF
-soxS	marR
-lrp	ilvX
-lrp	micF
-ihfA	nuoE
-fadR	accD
-ompR	pgaC
-ihfA	nuoJ
-arcA	rsd
-csgD	fliJ
-tyrR	tyrP
-arcA	icd
-ihfB	nuoL
-fur	fhuD
-crp	cstA
-crp	fbaA
-ihfB	nrfG
-fnr	ccmF
-flhD	flgD
-marA	marB
-ihfB	pstS
-fliZ	flhC
-lrp	aidB
-lexA	umuD
-fnr	grcA
-ihfA	atoA
-crp	ilvB
-slyA	paaK
-ihfA	csgG
-iscR	nfuA
-malT	malE
-marR	marB
-crp	cspD
-hdfR	gltD
-phoP	slyB
-narL	narG
-evgA	emrY
-fis	guaB
-paaX	paaA
-crp	gcvT
-fur	oppA
-slyA	paaC
-trpR	trpD
-evgA	evgS
-birA	bioC
-marA	acnA
-soxS	fpr
-crp	csrC
-fis	glyT
-narP	ccmF
-oxyR	sufB
-slyA	rmf
-flhD	fliP
-fis	valX
-gadX	slp
-ihfA	carB
-crp	gcvP
-nhaR	nhaR
-slyA	paaH
-trpR	trpR
-flhC	flgH
-fnr	nuoL
-fliZ	gadE
-modE	dmsC
-hns	gadA
-lsrR	lsrK
-hns	nrdA
-torR	tnaA
-argP	dapD
-fnr	nirD
-glnG	rseC
-tyrR	tyrB
-melR	melB
-narL	dmsC
-galS	galP
-gadE	yhiD
-flhD	fliR
-soxS	pqiB
-oxyR	hcp
-arcA	glcG
-lexA	recX
-nsrR	nrfG
-ihfB	glnP
-pdhR	ndh
-atoC	atoD
-ihfB	yiaJ
-fis	rrsG
-oxyR	ahpF
-fur	rnpB
-ompR	pgaB
-nsrR	nrfA
-modE	deoA
-fnr	ynfG
-purR	purB
-crp	envZ
-crp	galK
-hns	nrdG
-ulaR	ulaD
-hns	gadF
-ihfA	nuoH
-crp	deoD
-soxS	fumC
-lrp	kbl
-argR	carB
-cysB	tauB
-evgA	frc
-ihfA	adiA
-lexA	ruvB
-arcA	lldP
-hns	nirC
-ihfA	nrfD
-iscR	sufA
-baeR	mdtC
-crp	gatC
-tdcR	tdcC
-lrp	gltD
-crp	dadX
-evgA	safA
-narL	ynfH
-rcsA	wza
-crp	dadA
-fis	rrlA
-lrp	ilvM
-malT	malM
-betI	betT
-ydeO	hyaA
-arcA	rmf
-fis	nrdA
-cpxR	cheA
-ihfB	ompR
-crp	lacZ
-ihfA	aceA
-ihfB	glnH
-mlrA	cadC
-hns	evgA
-sdiA	rsd
-fis	nrfB
-tdcR	tdcB
-crp	rpsR
-mazE	mazF
-crp	mtlA
-fnr	hemA
-gadW	gadC
-mlrA	csgE
-ada	ada
-marA	marA
-crp	yiaJ
-ihfA	norW
-yqhC	dkgA
-nhaR	osmC
-fnr	pflB
-phoP	gadW
-slyA	paaI
-ihfA	narK
-narP	nrfE
-cpxR	cheW
-fnr	ccmD
-argR	astE
-lrp	fimD
-oxyR	hcr
-ihfB	cysJ
-hns	nirB
-lrp	rrfA
-cadC	cadB
-ihfA	ilvM
-ihfB	hycF
-ihfB	phoU
-fnr	napG
-fadR	fabH
-crp	chbB
-lrhA	lrhA
-argR	gltD
-rstA	csgF
-acrR	marB
-lsrR	lsrA
-crp	gltB
-cysB	cysP
-pspF	pspC
-modE	ccmC
-fis	gltW
-crp	gatZ
-lrp	alaT
-lrp	ilvL
-csgD	yccT
-narL	dmsA
-fis	nrfA
-narL	poxB
-zur	znuB
-crp	rpoH
-argP	nrdB
-hdfR	flhC
-narP	nirC
-trpR	yaiA
-crp	agaW
-pepA	carA
-fnr	cydB
-phoB	pstC
-fnr	dsbE
-crp	ulaA
-ihfA	ilvG_1
-ihfB	sodA
-lrhA	leuO
-slyA	paaJ
-glcC	glcF
-hns	yhiM
-rcsB	yhiM
-ascG	prpR
-fliZ	gmr
-acrR	acrB
-evgA	yegZ
-narL	napF
-malT	malG
-lrp	gltT
-lacI	lacA
-arcA	moeB
-adiY	gadX
-narL	frdA
-gadE	hdeA
-crp	malK
-cysB	cbl
-trpR	trpB
-stpA	ssrS
-arsR	arsC
-cpxR	iceT
-ihfB	csgE
-rcsB	rprA
-crp	cyaA
-soxS	uof
-evgA	gadF
-crp	glpG
-cpxR	marR
-fnr	nirC
-leuO	bglB
-fis	rrfH
-fis	nrfC
-fis	cysG
-evgA	emrK
-malT	malP
-arcA	nuoI
-alaS	alaS
-narP	cysG
-caiF	fixA
-fis	nrdB
-argR	argR
-ihfB	tdcC
-flhC	flgE
-lacI	lacZ
-fhlA	hypB
-cpxR	cpxP
-nhaR	pgaD
-ihfA	sufS
-arcA	nuoC
-flhC	flhE
-ihfB	hycE
-fadR	fadJ
-cpxR	mdtB
-argR	argD
-ihfB	ssuD
-narP	nrfF
-trpR	aroM
-malT	malF
-arcA	nuoH
-gcvA	gcvH
-ydeO	dctR
-ihfA	hypC
-tyrR	aroL
-fnr	nuoK
-fadR	accB
-lexA	ydjM
-fhlA	fhlA
-fis	glnA
-metJ	metR
-hns	fimA
-purR	cvpA
-crp	dusB
-cpxR	csgA
-evgA	ydeP
-fhlA	hypC
-cbl	ssuB
-narL	hcr
-nagC	glmS
-csgD	fliF
-ihfB	rpoH
-fliZ	flhD
-ihfA	atoB
-gadE	yhiM
-deoR	deoD
-ydeO	gadF
-fis	rrsB
-ihfA	narG
-phoB	psiE
-narL	nirD
-phoB	cusF
-modE	dmsA
-paaX	paaI
-crp	dcuR
-fnr	poxB
-yafQ	cspE
-glpR	glpA
-cytR	cdd
-ihfB	nuoJ
-lldR	lldR
-glpR	glpK
-soxS	rimK
-fis	nrfD
-fis	nrfG
-gadX	hdeD
-crp	rhaR
-fnr	napA
-hns	fimE
-relE	hokD
-puuR	puuP
-narL	ynfE
-rutR	nemA
-ydeO	slp
-ihfA	fimB
-fhlA	hycI
-marA	ybjN
-slyA	leuO
-hns	mdtE
-crp	glpB
-nagC	glmU
-hns	lacA
-glpR	glpQ
-crp	mazF
-crp	gadF
-melR	melA
-crp	tdcB
-crp	glnL
-puuR	puuB
-fnr	nikA
-fis	rrsD
-ompR	bolA
-rcsB	rcsA
-ihfA	tdcE
-fur	fepC
-galS	galM
-rcsA	wcaA
-fnr	nrfD
-cpxR	ppiD
-trpR	trpC
-hns	chiA
-ihfB	atoE
-iscR	iscS
-arcA	fadA
-galS	galK
-narL	nirC
-crp	rplM
-marA	ybjC
-crp	fis
-nrdR	nrdA
-fur	garK
-galR	galR
-lrp	dadX
-zraR	zraP
-crp	mdtF
-glnG	astE
-marA	micF
-gadE	cadA
-crp	mtlR
-ihfB	proV
-crp	epd
-soxS	pqiC
-cpxR	cpxR
-nac	nac
-crp	araF
-iscR	sufS
-rutR	carB
-ihfB	hycA
-paaX	paaG
-baeR	baeS
-argR	hisQ
-ascG	ybiT
-flhD	flhE
-rcsB	rpoE
-phoP	hdeA
-soxS	fldA
-marA	pqiB
-fis	queA
-narP	nrfA
-fis	ileV
-argR	gltF
-rcsB	bglB
-ihfA	paaC
-flhC	flhB
-cynR	cynT
-rcsB	leuO
-fliZ	csgE
-hipA	mazE
-narL	pflB
-rutR	carA
-ihfA	focA
-ompR	ompF
-crp	guaB
-lrp	rrfC
-crp	glpR
-rstA	csgD
-fis	rrsE
-qseB	qseB
-ihfA	dmsB
-ihfA	phoU
-soxS	micF
-marA	fumC
-narL	ompW
-arcA	glcE
-phoB	cusC
-acrR	soxR
-ihfA	hycE
-evgA	gadE
-crp	araB
-lrp	lrp
-iscR	hyaA
-fnr	nirB
-dcuR	citB
-lrp	ilvD
-ihfB	proW
-ihfA	pstB
-crp	mdtE
-crp	hflX
-arcA	nuoL
-dcuR	dctA
-uxuR	gntP
-lrp	gcvH
-fnr	nuoM
-purR	purH
-arcA	nuoM
-hns	csgD
-hcaR	hcaC
-phoP	safA
-soxS	marB
-fis	bglB
-phoB	feaR
-arcA	cydA
-caiF	fixX
-argR	artQ
-fhlA	fdhF
-fis	dusB
-gcvA	gcvP
-fnr	hypC
-glnG	astD
-cpxR	degP
-glcC	glcA
-ihfA	ilvA
-nikR	nikR
-phoB	cusB
-allR	allS
-narP	napB
-ihfA	paaH
-fnr	fdnH
-crp	araD
-bglJ	bglF
-crp	deoB
-fnr	ynfE
-rcsB	osmC
-fhlA	hypE
-fnr	ccmE
-soxS	acrB
-fnr	ydhX
-ihfA	yjbH
-hns	evgS
-uvrY	luxS
-bglJ	bglG
-oxyR	mntH
-ihfA	ilvG_2
-narP	ydhX
-narP	napH
-gadE	cadB
-phoP	hemL
-crp	fucP
-ihfA	paaJ
-rcsB	bglF
-fis	rnpB
-cytR	tsx
-metJ	ygfB
-kdpE	bglA
-rstA	dnaA
-xylR	recC
-soxR	ycdX
-uhpA	dcd
-rstA	selB
-zraR	relA
-relE	ygfB
-pdhR	acrA
-melR	ispA
-csgD	recC
-malT	dsbC
-dnaA	lexA
-mazF	rapZ
-lexA	cpxA
-kdpE	bisC
-pepA	yggX
-hupB	dnaN
-fliZ	mutL
-evgA	ppx
-marR	ydgJ
-rcnR	mutL
-dcuR	hrpA
-relB	cysE
-arsR	ispH
-soxR	yfeX
-cbl	dnaN
-zntR	cysE
-fliZ	hemB
-rhaS	ppx
-rhaR	mlaC
-soxS	nagZ
-lsrR	mlaC
-modE	gpp
-aidB	dnaN
-creB	lptC
-rhaR	hemY
-hipB	rsmA
-sdiA	ppx
-stpA	gpp
-rcsA	rsmA
-slyA	gshB
-dinJ	acrA
-flhC	dcd
-cynR	pmbA
-gadW	kdsD
-lacI	ybeY
-hupA	dnaA
-mlrA	uvrD
-lsrR	yijD
-nsrR	mlaB
-cbl	selB
-fnr	lpoA
-lldR	gshB
-slyA	uvrD
-fhlA	nudB
-phoB	era
-malI	yrdD
-metR	cpxA
-ydeO	bglA
-rstA	clsA
-fhlA	proB
-yhaJ	yfgM
-modE	recC
-mntR	cpdA
-crp	kdsD
-qseB	clsA
-rcsA	yfeX
-exuR	thyA
-narL	mrcB
-norR	hemE
-adiY	cnoX
-uvrY	dut
-qseB	psd
-caiF	rsmA
-dcuR	rppH
-cusR	thyA
-lsrR	relA
-soxR	nudB
-tyrR	lexA
-sdiA	ribD
-argP	pdxB
-fis	pdxJ
-cynR	opgD
-trpR	gpp
-iscR	uvrC
-leuO	ppnP
-cadC	srmB
-acrR	srmB
-cspA	ydgJ
-lldR	dut
-dnaA	asmA
-cspA	yrdD
-gntR	rapZ
-fnr	fabR
-cbl	dnaX
-argP	hemB
-galR	fmt
-zraR	roxA
+tf_symbol	gene_symbol	score
+fhlA	hycG	0.330692834919319
+crp	nanC	0.195955422939733
+nagC	chbA	0.279275997076184
+ihfB	hycB	0.317159155849367
+fis	alaU	0.526357008842751
+crp	rseC	0.772698544431478
+fnr	nrfF	0.716004002373666
+fur	fhuF	0.460312170675024
+crp	fis	0.192584765376523
+dnaA	nrdB	0.874719147803262
+lrp	alaE	0.855174748692662
+fnr	nrdG	0.043968346901238
+crp	tdcC	0.30530039453879
+fis	nuoG	0.240018677199259
+ydeO	gadE	0.00933555304072797
+cpxR	yqaE	0.868203316116706
+crp	yhfA	0.077439327724278
+arcA	rpoS	0.718877916922793
+nagC	nanC	0.712058344855905
+hns	gadW	0.413467227481306
+crp	guaA	0.541941524483263
+fur	fhuC	0.549502287758514
+purR	ubiX	0.89790120604448
+trpR	trpC	0.228200015844777
+csgD	nlpA	0.76851410116069
+fur	ryhB	0.244713703403249
+phoP	hemL	0.153258653590456
+ihfA	paaA	0.776287709362805
+mlrA	yhbE	0.931547516258433
+hupB	galE	0.692103457404301
+phoB	cusF	0.639931738842279
+crp	fbaA	0.179658737499267
+cbl	ssuB	0.327859462006018
+iscR	nfuA	0.584072050405666
+fur	garP	0.301159415394068
+fur	oppF	0.55348574439995
+arcA	glcG	0.0966943989042193
+fur	cirA	0.667077062651515
+cynR	cynR	0.970709655666724
+crp	glpD	0.162050157086924
+oxyR	ahpF	0.390627471730113
+fis	rrsC	0.53776407125406
+oxyR	hcp	0.0425517321564257
+fhlA	hycA	0.51665803254582
+ihfB	ilvX	0.645963781047612
+crp	fumC	0.891536863986403
+arcA	nuoG	0.823919631307945
+crp	ychH	0.379881317261606
+narP	nrfA	0.892736726207659
+ihfA	pspA	0.633748087566346
+crp	fucK	0.567396260332316
+lrp	lysP	0.417000938439742
+ihfB	nuoM	0.0540843999478966
+narL	fdnH	0.800246719503775
+narL	ogt	0.513182783732191
+fadR	fadI	0.463499566540122
+lrp	ilvE	0.772198112215847
+narL	ccmB	0.302460423437878
+crp	ulaA	0.960876491852105
+ihfB	pstC	0.141691632568836
+phoP	phoP	0.552400399930775
+ihfB	narJ	0.829885717015713
+fliZ	flhC	0.183722835266963
+ihfA	paaK	0.646363379433751
+slyA	leuO	0.936365531990305
+crp	araE	0.731913726544008
+ihfB	csgD	0.143652249360457
+glcC	glcB	0.312198679428548
+fur	sodA	0.771091938950121
+fur	fepB	0.861653442960232
+lrp	ilvM	0.658088434720412
+ihfA	ssuE	0.308976196916774
+phoP	gadW	0.690209407359362
+iscR	sufB	0.367276100907475
+ihfB	sufS	0.980265701655298
+crp	glgP	0.141752994153649
+iclR	iclR	0.390232210746035
+marA	acnA	0.826920501887798
+ihfB	nuoI	0.724572190782055
+modE	napA	0.654327995143831
+evgA	gadF	0.105267595034093
+mazF	mazE	0.873432733351365
+ompR	bolA	0.0399482403881848
+fis	nuoK	0.337443163851276
+gadE	gadA	0.971335277659819
+hns	rcsB	0.552930581383407
+fis	mazG	0.343824789626524
+fis	mazE	0.580769288819283
+caiF	caiD	0.363729155622423
+dnaA	uvrB	0.625483073526993
+ihfA	cysG	0.489851332968101
+ihfA	gltF	0.0316139617934823
+galR	galR	0.108859149506316
+fis	rrlE	0.130703654605895
+slyA	paaH	0.544008275493979
+arcA	hyaC	0.425849029095843
+fnr	fnrS	0.0340829838532954
+narL	nrfF	0.949041552841663
+crp	mtlD	0.958209494594485
+dcuR	frdC	0.879811589838937
+betI	betB	0.165583122055978
+fur	garK	0.0386239290237427
+tdcA	tdcB	0.618015544721857
+cpxR	csgE	0.91416726494208
+rcsB	wcaA	0.694195173680782
+adiY	gadA	0.582825819728896
+bolA	mreC	0.780241264263168
+fnr	cysG	0.102980668656528
+phoB	psiE	0.239040006883442
+fnr	narJ	0.49743852368556
+treR	treC	0.718715616036206
+xylR	xylG	0.951850018231198
+hns	rrlB	0.8483797009103
+fadR	accD	0.239880596287549
+pdhR	cyoA	0.401060434291139
+modE	hycE	0.29753873962909
+gadE	hdeA	0.638210023520514
+glnG	glnG	0.938951285555959
+crp	envZ	0.412822821643203
+tyrR	aroL	0.0289846044033766
+ihfA	nuoL	0.140529975760728
+soxS	zwf	0.887334072263911
+flhC	fliF	0.184114165604115
+fhlA	hycB	0.821319728856906
+lrp	fimC	0.0619812647346407
+fnr	ccmH	0.629449364263564
+fis	lysV	0.876882742159069
+fnr	nuoI	0.85853212303482
+crp	glpC	0.211848445236683
+rcsB	rseA	0.642356204567477
+gadE	gadC	0.482245009625331
+fis	queA	0.804133314872161
+fnr	ccmB	0.71054936433211
+iscR	iscR	0.229070312809199
+ihfA	pstB	0.752763093216345
+ihfA	pspD	0.873938784468919
+galR	galM	0.967445243382826
+araC	araB	0.418444912414998
+pdhR	glcD	0.526491213357076
+ihfB	yiaJ	0.718032531673089
+nac	ydcT	0.816113782813773
+fur	yjjZ	0.742738356580958
+nsrR	nrfC	0.678680926561356
+flhD	fliL	0.61699355323799
+nhaR	pgaB	0.80330115952529
+glpR	glpF	0.535706855822355
+crp	ompW	0.391506088897586
+hns	galK	0.179846373386681
+crp	mazE	0.836007507285103
+fnr	nuoE	0.278559532947838
+hns	dctR	0.864276743959635
+crp	rpsI	0.620460350997746
+csgD	csgB	0.600323605816811
+ihfB	cysH	0.993052259553224
+leuO	leuO	0.675097297644243
+hns	nrdA	0.5659444113262
+crp	araB	0.291193502256647
+lrp	rrfC	0.624063266906887
+envR	acrB	0.560810988536105
+ihfA	ssuB	0.460905644809827
+csgD	flgM	0.639387050410733
+fnr	nikC	0.452736909734085
+hupA	galE	0.952769977040589
+crp	fucU	0.596012534806505
+ihfA	paaG	0.260499972617254
+ihfA	hycH	0.24845800967887
+ihfA	nrfA	0.768285124562681
+fnr	ccmE	0.22410449758172
+rcsB	bdm	0.486124873394147
+gadX	hdeD	0.167153507703915
+crp	gntT	0.661169421859086
+crp	lsrA	0.689469394274056
+betI	betI	0.0373235249426216
+modE	ccmF	0.713790891226381
+narP	nirC	0.286599466344342
+lexA	rpoD	0.348413478815928
+acrR	marA	0.953717298805714
+flhD	fliM	0.37485782452859
+crp	glnL	0.571500249905512
+cytR	rpoH	0.369106016121805
+ihfB	nrfC	0.874062775401399
+ihfB	norW	0.907541410066187
+arcA	nuoF	0.148231449536979
+ihfB	nrfA	0.722016805550084
+arcA	nuoB	0.777666527312249
+marA	xseA	0.989594617625698
+hns	yfaE	0.855092662386596
+ihfB	csgF	0.350724207004532
+cpxR	dsbA	0.341320211766288
+rcsB	wcaB	0.356907238718122
+crp	crp	0.460207057185471
+ihfB	sufB	0.0890789888799191
+mlrA	cadC	0.295408290578052
+gadE	gltF	0.56148266303353
+slyA	paaE	0.18314074841328
+crp	gltB	0.562861104728654
+ihfB	narK	0.302584445104003
+phoP	mgrB	0.491247207857668
+oxyR	sufS	0.334246057318524
+oxyR	hcr	0.12303385254927
+lrp	cadB	0.249234072864056
+arcA	fadJ	0.91027600178495
+iscR	hyaB	0.14149635261856
+ihfA	cysJ	0.177298560272902
+arcA	nuoE	0.43359903129749
+cpxR	ygaU	0.9591355973389
+crp	malT	0.551735970890149
+cysB	tauC	0.307886530412361
+gadE	mdtF	0.636458656517789
+hipA	mazF	0.312522931955755
+cusR	cusR	0.504169357242063
+fur	fepG	0.425732534611598
+putA	putA	0.126849344233051
+fis	ndh	0.870372405508533
+fis	proP	0.907880777493119
+ompR	cadA	0.775185246951878
+glcC	glcG	0.556285025784746
+narP	ydhV	0.0594402137212455
+soxS	pqiA	0.128282113000751
+ihfB	ompC	0.715514545096084
+narP	ccmD	0.704057303024456
+fis	rrsH	0.241603994974867
+fis	ogt	0.000824995338916779
+arcA	hyaE	0.366710604401305
+oxyR	ybjC	0.570813055150211
+gadE	gadB	0.304366648197174
+crp	fumA	0.297239735256881
+mngR	mngB	0.0105368720833212
+fis	guaB	0.41690204362385
+narP	cysG	0.058694755891338
+ihfB	paaG	0.624070152174681
+crp	gltD	0.512099959189072
+nsrR	hcp	0.880590841639787
+gadE	cadA	0.551884867018089
+narL	nrfC	0.741197055438533
+basR	csgE	0.872125654248521
+leuO	bglF	0.528513971483335
+ihfB	pspE	0.683074244530872
+ihfA	cysH	0.197250808123499
+cpxR	motA	0.329050617292523
+csgD	csgA	0.21786411292851
+norR	norW	0.72288855467923
+soxS	ompN	0.869712624466047
+paaX	paaZ	0.345942678395659
+nac	codB	0.883686424000189
+crp	ulaF	0.131609780946746
+gadW	gadA	0.107229840476066
+evgA	gadE	0.468257069354877
+ihfB	hypB	0.715886083664373
+crp	ascF	0.1975685688667
+birA	bioC	0.485724701080471
+narP	nrfB	0.0555713814683259
+modE	modC	0.0807546868454665
+lexA	ydjM	0.183836791431531
+argR	astC	0.859159571118653
+glnG	astE	0.126710179727525
+purR	purM	0.879366768756881
+narL	napA	0.714919866761193
+ilvY	ilvY	0.23922968399711
+oxyR	flu	0.0915804000105709
+glcC	glcF	0.0449980553239584
+crp	mtlA	0.0157012760173529
+fis	nuoN	0.054426780436188
+fnr	nikA	0.024243978317827
+cpxR	mdtC	0.00457219476811588
+marA	micF	0.702726086135954
+flhC	flgC	0.331871581496671
+narP	ydeP	0.590292982757092
+marA	fumC	0.587999308947474
+lldR	lldD	0.799696278059855
+ihfB	hypA	0.160534262657166
+purR	purD	0.786756805609912
+lrhA	leuO	0.14481116971001
+crp	melA	0.7868072304409
+iscR	sufA	0.75406918535009
+ihfA	tdcC	0.0339445599820465
+modE	ccmB	0.738739646505564
+iscR	sufS	0.158065498108044
+csgD	yccT	0.68894635210745
+gntR	gntT	0.00288300332613289
+marA	yhiD	0.137135078664869
+ihfB	sufD	0.701962408144027
+fis	thrV	0.206962285097688
+ihfB	hycH	0.218596705934033
+iscR	erpA	0.385735725983977
+melR	melB	0.189714778913185
+modE	dmsC	0.554809484630823
+phoB	ugpQ	0.930911401053891
+ihfB	hpt	0.0249923360534012
+fnr	pflB	0.759221883956343
+argR	argA	0.819193279137835
+fnr	purN	0.571985064540058
+glcC	glcE	0.200646623969078
+cpxR	ompC	0.143811146030203
+soxR	soxS	0.0273487099912018
+hcaR	hcaB	0.387630796758458
+crp	flhC	0.560481579275802
+purR	pyrC	0.360421692952514
+fur	sufE	0.523941496619955
+mlrA	csgD	0.0630088143516332
+iscR	hyaF	0.554483396699652
+narP	fdnI	0.563847685232759
+fnr	nrfC	0.0644867704249918
+ihfB	atoE	0.565141146536916
+rbsR	purH	0.0872615301050246
+phoB	phoH	0.863467866089195
+chbR	chbG	0.910129552241415
+ihfA	yjbG	0.469310390995815
+flhC	fliN	0.412627740763128
+gadE	cadB	0.552606421057135
+pdhR	glcE	0.454735885374248
+ihfA	hycD	0.944181388244033
+crp	chbR	0.582897182554007
+metR	hmp	0.736864904407412
+slyA	paaB	0.330947187263519
+lrp	serC	0.487732472829521
+ydeO	hyaF	0.240058003226295
+cysB	cysK	0.963506646221504
+narP	fdnG	0.463088567834347
+crp	deoC	0.95006540720351
+ihfB	ssuB	0.801547172246501
+norR	norR	0.401682952884585
+flhD	flgB	0.136306897038594
+lexA	rpsU	0.960483581060544
+basR	qseB	0.154419300612062
+lexA	umuC	0.843215164029971
+lrp	ilvG_1	0.428295484976843
+fis	guaA	0.631960856262594
+arcA	nuoI	0.83518607984297
+rob	fumC	0.883923563174903
+ihfA	hycE	0.414496534736827
+hns	gltT	0.297010554932058
+crp	prpD	0.359720940701663
+crp	gatB	0.96291199629195
+ihfB	ssuA	0.568821841385216
+argP	nrdA	0.0426515692379326
+crp	yiaJ	0.743676340207458
+ihfA	sufD	0.682051337324083
+fis	fis	0.558238982222974
+csgD	fliH	0.27646256564185
+crp	hupA	0.697586465626955
+arcA	ssb	0.495219602016732
+dcuR	citA	0.380779436090961
+rob	micF	0.47215461730957
+kdpE	kdpB	0.635986732086167
+ihfA	paaH	0.531404617242515
+tdcR	tdcE	0.229312809417024
+ihfA	proX	0.0291227507404983
+marA	pqiB	0.942194272065535
+modE	moaB	0.730052259517834
+crp	ptsI	0.758198255905882
+arcA	glcA	0.864274285035208
+ydeO	gadW	0.245246179867536
+fis	nuoA	0.36639715032652
+narP	ydhT	0.791599490214139
+ihfB	proX	0.211627488257363
+lrp	rrlA	0.349712385330349
+hns	hns	0.451375858159736
+cueR	cueO	0.304258996620774
+crp	malY	0.510716903954744
+ihfA	focA	0.535163015592843
+fur	sufC	0.653756730258465
+fadR	fabD	0.511763101210818
+ihfA	adiA	0.668120900401846
+csgD	fliF	0.335909306770191
+glnG	glnA	0.588016123045236
+fis	gltX	0.0566402855329216
+dnaA	aldA	0.0261603514663875
+fadR	fabG	0.867193207843229
+ihfA	yjbE	0.418716153595597
+hcaR	hcaF	0.770535246934742
+ihfA	hycA	0.160547171952203
+fnr	hcp	0.578332573873922
+crp	dctA	0.687222812324762
+crp	hflX	0.634500481421128
+crp	glpQ	0.718432153575122
+ihfA	nuoE	0.927384542999789
+crp	paaZ	0.703158556483686
+narL	frdC	0.579958084505051
+ihfB	tdcF	0.68380688643083
+glnG	astA	0.589980430202559
+gadE	yhiM	0.596461820648983
+fur	fhuB	0.766572103835642
+gadE	gltD	0.569835127564147
+narL	napH	0.765658568590879
+slyA	rsd	0.739377401536331
+ihfA	hycI	0.158354239072651
+crp	fucI	0.555260153952986
+ihfB	ompR	0.46698001679033
+argR	argD	0.192010695813224
+mntR	mntH	0.906007272191346
+arcA	rsd	0.716342644300312
+csgD	csgE	0.403419371694326
+crp	ugpB	0.903374678222463
+fhlA	hypC	0.660506960237399
+crp	chbC	0.0300578509923071
+fnr	ydhX	0.828253698302433
+fnr	fdnH	0.790564312599599
+gadE	rcsA	0.398858214728534
+soxS	pqiB	0.977617403725162
+cysB	ssuC	0.473610617220402
+marA	hdeA	0.637102219741791
+ihfA	nuoG	0.120192065834999
+rhaS	rhaT	0.64656158699654
+evgA	evgA	0.843487256905064
+rcsB	bglF	0.0556643989402801
+puuR	puuA	0.982823564205319
+ihfA	pspB	0.404974812176079
+hns	gadE	0.680137307848781
+ompR	pgaD	0.982411541277543
+hns	lrp	0.170617906842381
+flhD	flgJ	0.443628518143669
+phoP	ydeO	0.18075492605567
+ihfA	paaE	0.988161288201809
+xylR	xylF	0.333427307661623
+lexA	symE	0.457291560713202
+crp	rpoH	0.435027140658349
+hns	proV	0.397752173012123
+alaS	alaS	0.50995622924529
+crp	xseA	0.563000936293975
+fnr	nikB	0.382142258575186
+rhaS	rhaS	0.85661761648953
+soxS	fur	0.901576361153275
+crp	ugpA	0.459696522215381
+gadW	yhiD	0.337267245631665
+fis	rrfA	0.450932408217341
+fis	nuoI	0.65509128710255
+cpxR	yqjA	0.887245087884367
+hns	slp	0.82317024981603
+ihfA	nuoB	0.113193216966465
+phoB	pstB	0.079993448453024
+rhaS	rhaA	0.0716366341803223
+ihfA	tdcE	0.510443016188219
+crp	lsrR	0.573048544116318
+cysB	tauB	0.706941562704742
+crp	glpB	0.9711289529223
+hipB	hipA	0.0896812351420522
+soxS	marA	0.716847658855841
+rcsB	gadX	0.0717395332176238
+crp	ugpQ	0.440171362599358
+ihfA	nrfF	0.71725552296266
+crp	araH	0.636075970483944
+phoB	psiF	0.753988788230345
+lsrR	tam	0.520723944995552
+purR	glyA	0.220389497699216
+baeR	acrD	0.297191550722346
+marA	pqiC	0.63568777567707
+acrR	soxS	0.313225321704522
+phoP	rstB	0.0661077175755054
+argR	hisJ	0.22858373913914
+soxR	soxR	0.467132211197168
+fnr	nrfD	0.165924380999058
+crp	prpC	0.187407550867647
+ihfB	gltB	0.0622775172814727
+fis	glyT	0.188794504851103
+rcsB	wzc	0.269857549807057
+rutR	rutC	0.43541107675992
+ihfA	gltB	0.829488321440294
+trpR	trpB	0.805862748762593
+fliZ	csgD	0.955314999679103
+fur	fepA	0.0794114940799773
+narP	napD	0.732250588480383
+hns	yciF	0.729198534274474
+ihfB	cysG	0.714306785957888
+lexA	recA	0.654131336137652
+metJ	metF	0.145655477652326
+crp	tdcA	0.967316666385159
+rhaS	rhaR	0.14884236222133
+pspF	pspF	0.747556472662836
+tdcA	tdcF	0.564285123720765
+mhpR	mhpC	0.339458008063957
+glpR	glpX	0.416144768474624
+malI	malX	0.690290688537061
+acrR	marB	0.982952834339812
+slyA	paaG	0.488295667339116
+crp	tdcD	0.441722946474329
+dcuR	frdB	0.588116902159527
+hns	fimD	0.94618176156655
+narL	dcuR	0.746178220724687
+fhlA	hycF	0.282460595946759
+rcsB	wzb	0.47009106259793
+fis	rrfB	0.605618234956637
+argR	astB	0.294206305639818
+narL	narK	0.130406985525042
+crp	malX	0.3637503774371
+fnr	fnr	0.769396138144657
+allR	allS	0.0297775107901543
+slyA	paaF	0.36749009671621
+crp	murP	0.414228461915627
+phoB	phoR	0.0365149911958724
+fis	nuoM	0.910963795380667
+fnr	fdnG	0.709520839620382
+narL	ynfF	0.481626803753898
+fhlA	hycC	0.875693577574566
+nhaR	nhaR	0.996551264775917
+ompR	pgaC	0.525827080011368
+iscR	napB	0.650494322180748
+paaX	paaY	0.518713685683906
+fnr	napH	0.917749319924042
+ydeO	mdtE	0.979027578840032
+hns	mdtE	0.983779688132927
+arcA	cydB	0.414054412627593
+fur	tonB	0.993923879927024
+crp	gatY	0.976376780541614
+crp	lsrD	0.61567404284142
+hns	hchA	0.601327110547572
+fur	sufB	0.890312039991841
+nanR	nanM	0.559726730687544
+lrp	rrsB	0.558615067740902
+soxS	nfsA	0.48089280934073
+fis	gltW	0.965447490336373
+xylR	araC	0.171962804859504
+fis	yfaE	0.302568105515093
+bglJ	bglF	0.87244360265322
+trpR	trpR	0.0203930356074125
+gadW	gadX	0.641876932466403
+narP	ydhW	0.496897017583251
+sgrR	sgrS	0.992841802537441
+tdcA	tdcA	0.653085696510971
+lexA	dinF	0.390644148457795
+paaX	paaD	0.374354120343924
+crp	gcvH	0.129453839035705
+lrp	rrlC	0.104087182553485
+crp	rhaR	0.276530364062637
+tdcR	tdcA	0.29380855942145
+slyA	paaC	0.411932545248419
+ihfB	csgE	0.671079473337159
+crp	chbA	0.0642901870887727
+oxyR	sufA	0.782454650849104
+bglJ	bglG	0.193727717502043
+ihfA	carB	0.73496404197067
+ydeO	hyaB	0.30073754535988
+lrp	lrp	0.316373718669638
+fliZ	csgE	0.721843289211392
+rutR	ydhM	0.197756754234433
+ompR	csgG	0.954732968937606
+narL	pflB	0.534820630215108
+cytR	udp	0.41870292276144
+oxyR	ybjN	0.330512206535786
+crp	glpE	0.412221741164103
+marA	marA	0.279960059328005
+pdhR	cyoB	0.610057357465848
+ihfA	norW	0.546801399672404
+fadR	accC	0.384479646105319
+narP	nrfE	0.306733611738309
+fnr	nuoC	0.714543114183471
+nanR	nanC	0.968883897643536
+fnr	nuoA	0.988123882561922
+fur	entS	0.711190161993727
+hns	cadC	0.123366281623021
+cbl	tauB	0.161167127313092
+fis	hns	0.0400740122422576
+puuR	puuD	0.210486931027845
+ihfA	ilvM	0.0890494184568524
+hcaR	hcaE	0.296638125320897
+narL	nirC	0.629647019319236
+fis	marA	0.173452538205311
+phoB	prpR	0.553736636415124
+slyA	paaK	0.240858122473583
+fnr	napG	0.529858383815736
+metJ	metA	0.79961108462885
+ompR	ompF	0.755922471638769
+argR	artQ	0.889632721664384
+narP	nrfG	0.182230047183111
+adiY	adiA	0.0623626445885748
+soxS	uof	0.229949698550627
+csgD	csgF	0.60406901082024
+tyrR	mtr	0.762818560004234
+arcA	nuoL	0.392728356411681
+torR	torD	0.848411125596613
+tyrR	folA	0.207040680805221
+galR	galP	0.774987603770569
+relE	hokD	0.979037888813764
+gcvA	gcvT	0.469785234658048
+ihfA	nrfC	0.785793851595372
+hipA	mazE	0.115602463018149
+phoP	nagA	0.421164493076503
+cbl	tauC	0.725844112224877
+ihfA	nirC	0.283771869493648
+fis	rrsG	0.662583156256005
+malT	malG	0.769884115550667
+dnaA	guaA	0.681363976327702
+rcsA	wzc	0.256233054446056
+cysB	ssuB	0.518514548661187
+narP	nirB	0.188459082040936
+narP	napF	0.899847441585734
+phoB	pstC	0.617939024232328
+modE	hycB	0.141614346532151
+cpxR	ompF	0.878076913766563
+ihfA	paaZ	0.440235280664638
+narL	ydhX	0.462891934206709
+fnr	ccmA	0.894047638168558
+argR	artM	0.729322489351034
+fhlA	fhlA	0.931354113854468
+arcA	sucC	0.0112174940295517
+flhD	fliO	0.681016431888565
+lrp	fimA	0.841563223395497
+fur	garL	0.206664724042639
+narP	ydhX	0.522011154796928
+ihfB	ilvL	0.634650971041992
+fnr	ydhY	0.799290827708319
+narL	ydhT	0.848087380873039
+ihfB	paaZ	0.601869198027998
+gadW	hdeA	0.0324843530543149
+cytR	deoC	0.771381004014984
+putA	putP	0.460109764710069
+fliZ	gadB	0.595299574313685
+ihfB	pstB	0.339079046621919
+iscR	iscS	0.47621271526441
+pspF	pspE	0.404588556149974
+crp	araF	0.626416763523594
+hns	hdeA	0.796206950210035
+fliZ	mdtF	0.514711698284373
+fliZ	hdeB	0.428305773064494
+lrp	ilvA	0.811320911860093
+hns	nirC	0.0279014657717198
+hcaR	hcaD	0.787936963373795
+mazE	mazE	0.523700685473159
+modE	hycG	0.444997624726966
+hns	galE	0.724714555079117
+fnr	nuoK	0.949425367871299
+uxuR	uxuA	0.510904110269621
+uvrY	uhpT	0.284548259340227
+narL	ccmF	0.934866115218028
+hns	evgA	0.4807071427349
+crp	hflK	0.570767290657386
+hns	bglF	0.523974447045475
+gcvA	gcvP	0.809996380005032
+fis	nirB	0.485513899940997
+ihfA	narJ	0.865233413875103
+iscR	hyaD	0.793140287511051
+fadR	fadJ	0.650734857423231
+argR	hisP	0.478430007817224
+zntR	zntA	0.738011615118012
+ihfB	ilvG_2	0.391075393185019
+fis	nuoC	0.611770152812824
+cpxR	degP	0.159770380938426
+hns	cysG	0.927572550950572
+fnr	nrdD	0.632822356419638
+hns	ssrS	0.902654913254082
+ihfB	hycD	0.710742140188813
+hns	stpA	0.664697779109702
+fis	ileT	0.854331457521766
+fhlA	hycD	0.522923540789634
+ihfB	gltF	0.580860174028203
+gadX	dctR	0.627999339718372
+fliZ	mdtE	0.239284319570288
+glnG	rseB	0.115595950046554
+crp	ilvB	0.129668524023145
+ihfA	ilvG_2	0.877738663461059
+lrp	oppF	0.564734861720353
+nsrR	ytfE	0.57656971574761
+csgD	fliJ	0.220079143997282
+iclR	aceA	0.668425030540675
+ihfA	glpQ	0.395697929197922
+fnr	narG	0.665248430799693
+rcsB	bglB	0.400124363834038
+dinJ	cspE	0.616108493413776
+crp	rseA	0.970621469430625
+ompR	ompC	0.126159279840067
+pdhR	cyoC	0.968413622584194
+fnr	ynfE	0.681861656019464
+rcsB	ftsA	0.507722956361249
+crp	csrC	0.406024994561449
+crp	tdcE	0.592933332780376
+cynR	cynT	0.0773075129836798
+hupA	galT	0.676678664516658
+oxyR	sufD	0.449826650787145
+rob	rob	0.989430715795606
+hdfR	gltF	0.460906097199768
+uvrY	ydeP	0.507156872889027
+lrp	rrsA	0.597716422285885
+crp	agaW	0.519532252568752
+ihfB	ihfA	0.591147482860833
+fis	gyrA	0.253450746415183
+arcA	nuoN	0.501821755431592
+soxS	micF	0.97109093144536
+ihfB	nuoF	0.902208001585677
+slyA	paaJ	0.963708200724795
+ascG	prpR	0.686522621894255
+fis	rrlC	0.0758603482972831
+flhD	flgE	0.302358772605658
+relE	relB	0.396703977137804
+fnr	nuoL	0.233011697651818
+glcC	glcA	0.892772879684344
+iclR	aceK	0.798935304395854
+leuO	bglJ	0.333937067072839
+ihfB	norV	0.223542588297278
+fadR	accB	0.247889844235033
+arcA	nuoM	0.128700047498569
+hns	nrdB	0.97728734719567
+cpxR	cheW	0.120461730053648
+lexA	ybiB	0.810351625550538
+hns	hdeB	0.876720025436953
+soxS	acnA	0.945288933347911
+rcsA	wcaA	0.374022611649707
+fis	gltU	0.932487945072353
+hcaR	hcaC	0.979850082891062
+fnr	prmC	0.529981562402099
+ihfA	pspC	0.649309627944604
+mhpR	mhpA	0.261458134511486
+arcA	hyaA	0.9398203920573
+crp	bglB	0.179556833114475
+crp	lacZ	0.434507692465559
+crp	nagE	0.0340466224588454
+hipA	hipB	0.877619304228574
+rcsB	wza	0.930961981415749
+marR	marR	0.418748267227784
+marA	hdeB	0.671926911221817
+crp	mtlR	0.869211338460445
+hns	csgE	0.568726386642084
+modE	deoA	0.392358278855681
+fis	glnG	0.498996226815507
+cynR	cynS	0.833752790931612
+cpxR	marR	0.502841916168109
+gadE	hdeD	0.790370208676904
+ydeO	hyaC	0.732584895100445
+glnG	glnH	0.586565484991297
+hns	yjjQ	0.670621311757714
+rstA	csgE	0.733499086461961
+rcsB	cadA	0.423465598840266
+ihfA	pstC	0.806967648910359
+lrp	dadX	0.776600418845192
+chbR	chbF	0.766850493382663
+argP	dapB	0.950075091095641
+hdfR	gltB	0.99554527993314
+gadW	gadC	0.546224558725953
+ihfB	nrfF	0.729136960813776
+narP	ccmE	0.923888099379838
+slyA	hlyE	0.783165707718581
+flhC	flhA	0.955956491176039
+gcvA	gcvB	0.892820605542511
+ihfA	atoE	0.0580640574917197
+arcA	uvrA	0.283437660196796
+soxS	ybjN	0.830842756899074
+crp	nupG	0.340111820260063
+fnr	dmsD	0.654101773397997
+fnr	dmsC	0.37329756678082
+crp	hflC	0.753774761222303
+crp	pflB	0.000463097356259823
+cbl	ssuE	0.316605900879949
+ihfB	nuoL	0.902033524122089
+crp	ugpC	0.836145130684599
+fnr	ydhW	0.785143074579537
+ulaR	ulaD	0.349035375285894
+galS	galP	0.326267710886896
+crp	ppiA	0.712381492136046
+fnr	moeA	0.835139364935458
+purR	purR	0.294499086448923
+flhD	fliJ	0.544047371484339
+flhC	fliO	0.875240996712819
+fnr	ccmC	0.292877140920609
+trpR	yaiA	0.024223905056715
+purR	purN	0.675768611254171
+crp	araJ	0.499942519469187
+lrp	oppA	0.362612289842218
+fnr	nrfG	0.920886207604781
+ompR	micF	0.696125205373392
+birA	bioA	0.198136703344062
+nsrR	nrfB	0.525195240974426
+relE	relE	0.0501591402571648
+crp	gadF	0.0578821399249136
+fis	nrfE	0.311100067337975
+hns	gadF	0.953902886481956
+marR	marA	0.939074820373207
+narL	narJ	0.21353352535516
+basR	csgD	0.728202012134716
+iscR	napH	0.685514176730067
+hns	yciE	0.159650207962841
+leuO	bglG	0.591960204299539
+cpxR	baeS	0.301064520841464
+modE	dmsA	0.0504927984438837
+crp	nanE	0.623177640372887
+iscR	sufD	0.89167218352668
+nsrR	poxB	0.684273605700582
+ihfA	ompC	0.0498509462922812
+rutR	gloA	0.886813896242529
+crp	hlyE	0.160027985693887
+glnG	glnL	0.0975828743539751
+fur	exbD	0.972570124780759
+crp	fucR	0.505602631950751
+mazF	mazG	0.952532298164442
+fnr	ynfF	0.0421505295671523
+ihfA	sufA	0.160172092728317
+tdcR	tdcC	0.900725779822096
+lrp	cadA	0.0220056667458266
+crp	agaA	0.210809323005378
+paaX	paaH	0.474660999840125
+fis	rrfD	0.200708466582
+fur	entF	0.666919273789972
+csgD	fliI	0.231679129647091
+ihfA	ilvG_1	0.0330011621117592
+crp	paaJ	0.753195811063051
+crp	glgA	0.271946711931378
+modE	napH	0.555659053614363
+fis	rrfC	0.199003559304401
+nac	ydcS	0.866455354262143
+caiF	caiB	0.56488786241971
+lrp	gcvP	0.0913019822910428
+modE	modB	0.871512239798903
+atoC	atoB	0.875426525948569
+metJ	metE	0.488333820365369
+fabR	fabA	0.191113621462137
+feaR	tynA	0.616334970807657
+crp	lsrG	0.169363198569044
+fhlA	hycH	0.884149387013167
+cusR	cusS	0.685877805808559
+fnr	nirB	0.706996434601024
+deoR	deoD	0.307241058209911
+rutR	rutD	0.48579174419865
+ihfA	hycF	0.286967068212107
+flhD	fliE	0.476117108948529
+crp	yhcH	0.931567023508251
+ihfB	ssuD	0.468070277012885
+caiF	caiC	0.761380685726181
+soxS	marR	0.338797076139599
+ihfA	hypD	0.415969719178975
+ihfB	aceA	0.415832855738699
+arcA	glcB	0.347082568332553
+fliZ	yhiD	0.244698484893888
+crp	nanA	0.600413523847237
+ihfB	proV	0.748293734155595
+yjjQ	flhD	0.295829674229026
+hns	bglJ	0.0546014646533877
+fis	tufB	0.297358791576698
+crp	prpE	0.662388995755464
+crp	flhD	0.832435937132686
+rutR	carA	0.979581799125299
+sgrR	alaC	0.255529702408239
+yqhC	dkgA	0.9512443409767
+soxS	rimK	0.856467408360913
+trpR	trpL	0.703546931967139
+fis	nrfD	0.954281963175163
+arcA	fadE	0.343674485571682
+hns	fimH	0.331953622866422
+fur	sufS	0.90916033834219
+fur	fecD	0.407710393192247
+narL	napD	0.901089108549058
+baeR	mdtC	0.191054440569133
+ihfB	ilvM	0.594299014192075
+puuR	puuB	0.602953392779455
+glnG	astC	0.405880716862157
+argR	gltB	0.783948178170249
+tyrR	yaiA	0.842372662154958
+norR	norV	0.273641199804842
+ihfA	nuoN	0.93748178309761
+iscR	hyaE	0.991673082113266
+crp	rmf	0.201923529850319
+hns	nirD	0.151517637073994
+ihfB	ilvE	0.541505133267492
+ihfA	nirD	0.672221392625943
+marA	pqiA	0.159331121947616
+dnaA	guaB	0.760484089609236
+nagC	glmU	0.363304321886972
+ihfB	glnH	0.709913667291403
+ihfA	glnQ	0.372245810460299
+fis	crp	0.689407873665914
+flhC	flhB	0.185734763508663
+flhD	fliK	0.821789034176618
+ihfB	nuoE	0.202286517014727
+rbsR	purD	0.403583327308297
+fnr	napD	0.842001916375011
+cytR	cytR	0.698998661478981
+oxyR	sufC	0.15652871504426
+arcA	fadL	0.0906311005819589
+ihfA	gltD	0.0218309094198048
+sdiA	rsd	0.349550512386486
+araC	ygeA	0.696340131340548
+ihfA	ndh	0.800117262173444
+pdhR	glcB	0.23230109619908
+fur	fepE	0.381160625489429
+crp	serC	0.828861767658964
+ihfB	nrfD	0.408039162633941
+lrhA	lrhA	0.919906001072377
+narL	ydeP	0.838078659260646
+sdiA	rmf	0.72589602181688
+lrp	gltU	0.896691817557439
+fnr	napF	0.424883319530636
+ydeO	hyaA	0.0737948713358492
+flhC	fliK	0.50032257870771
+lrp	dadA	0.0206489639822394
+crp	udp	0.105944460257888
+fis	cspA	0.391584900673479
+bolA	mreD	0.617874474264681
+lldR	lldP	0.320147129707038
+narL	nrfE	0.133177609881386
+paaX	paaK	0.197511300211772
+nrdR	nrdD	0.878665893338621
+ihfB	paaH	0.959748139604926
+melR	melA	0.221233481308445
+ihfA	csgD	0.131367118796334
+gadW	hdeB	0.195130108390003
+argR	argE	0.861034674337134
+ascG	ascF	0.0951289935037494
+lrp	gltD	0.279580208705738
+acrR	acrB	0.363557145232335
+slyA	paaI	0.322202237090096
+lrp	gcvT	0.624240222619846
+ascG	ybiT	0.526123847346753
+adiY	gadC	0.684255418367684
+nrdR	uvrC	0.0675769008230418
+putA	srkA	0.926880444167182
+qseB	mlaB	0.238263689447194
+kdgR	dut	0.740369743667543
+treR	yijD	0.378354043001309
+yhaJ	ycdX	0.599247259553522
+rcnR	mlaB	0.998363226419315
+nhaR	selB	0.768600985873491
+lsrR	tyrR	0.370475466828793
+atoC	trmA	0.586484101368114
+trpR	yfeX	0.637809708015993
+rbsR	dut	0.640107169747353
+bglJ	ycdX	0.993065596558154
+mlrA	dnaA	0.116765311919153
+hcaR	yejM	0.0962094713468105
+narL	umpG	0.164975115796551
+narL	rsmA	0.996470943558961
+lrp	rpe	0.952433954691514
+gcvA	folX	0.0659797231201082
+nanR	fabR	0.28380546416156
+iscR	umpG	0.184822883689776
+ulaR	mutL	0.00929488986730576
+alaS	lptC	0.29932246170938
+birA	rng	0.931835712632164
+leuO	ppnP	0.285914149601012
+cbl	ribD	0.305204505100846
+fabR	ffh	0.972367391688749
+zraR	ycdX	0.793465384515002
+rbsR	pepP	0.06498261843808
+puuR	gpp	0.158533961279318
+iclR	ispA	0.846424052258953
+uhpA	fmt	0.003865523962304
+gadE	mlaC	0.751839582808316
+fnr	opgD	0.652467611478642
+cspA	yjhU	0.0950214439071715
+sgrR	umpG	0.463870078790933
+deoR	fre	0.932416611583903
+leuO	ycdX	0.0583657685201615
+gadE	era	0.555840181885287
+cusR	yijD	0.889535181457177
+gadW	selB	0.625396008137614
+bglJ	rsmH	0.715864427387714
+crp	ppk	0.931000386830419
+cadC	dnaX	0.294269031612203
+mazE	parC	0.268123146845028
+kdgR	yjhU	0.802591508487239
+lrp	bglA	0.701201927149668
+hipB	uvrY	0.266431899275631
+mazE	yfeX	0.721153513761237
+mhpR	bisC	0.945587609894574
+tdcR	mlaB	0.201172021683306
+rob	ispA	0.417794832726941
+stpA	uvrD	0.513906532898545
+nhaR	ydgJ	0.93797265784815
+ascG	lptC	0.382106514647603
+yqhC	nagZ	0.4124352959916
+rob	bisC	0.762547148857266
+cspA	dnaN	0.532645224360749
+marA	bisC	0.728199051925912
+rutR	arcB	0.182859404012561
+iscR	rsmH	0.407081300858408
+lacI	selB	0.291586176259443
+flhC	parC	0.226809650426731
+phoP	lpoA	0.977150533813983
+iscR	cysE	0.702006812207401
+cusR	folX	0.646744975354522
+soxR	dcd	0.118060672422871
+yafQ	mrcB	0.670605990570039
+pspF	yjhU	0.895136487204581
+dinJ	ppk	0.524881270015612
+rob	hrpA	0.688370450399816
+fur	yggX	0.796315730782226
+soxR	rsmA	0.496977112954482
+cynR	rapZ	0.619335122639313
+lrp	pepP	0.0253060865215957
+cadC	dut	0.319240629440174
+cusR	yrdA	0.815258223563433
+tdcR	hemE	0.00395953981205821
+ihfB	oxyR	0.332120118429884
+csgD	relA	0.783373876009136
+deoR	lpoA	0.417103283340111
+purR	mlaB	0.351997336838394
+soxR	ycbZ	0.827538982732221
+leuO	cysE	0.249031776096672
+mlrA	gshB	0.987886697053909
+putA	ispA	0.00953284394927323
+narL	umpH	0.695316053926945
+pepA	rppH	0.545293966308236
+relB	rng	0.734384702285752
+alaS	ppx	0.492399559589103
+glnG	cpxA	0.897458679741248
+malT	fre	0.0553750044200569
+fnr	lptB	0.577648834325373
+dnaA	ppk	0.944165918743238
+feaR	dnaX	0.381671335780993
+yjjQ	yjhU	0.870274797780439
+tdcR	dcd	0.490381004754454
+rcnR	dnaX	0.102879045996815
+fliZ	lexA	0.0777240765746683
+qseB	bisC	0.766026946948841
