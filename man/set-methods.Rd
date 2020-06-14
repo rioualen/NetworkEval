@@ -19,6 +19,8 @@
 \alias{union_by_ris,set-method}
 \alias{setdiff_by_ris}
 \alias{setdiff_by_ris,set-method}
+\alias{get_tfs_eval}
+\alias{get_tf,set-method}
 \alias{get_sets}
 \alias{get_sets,set-methods}
 \title{The show methods for set objects}
@@ -42,6 +44,8 @@ intersect_by_ris(x, y)
 union_by_ris(x, y)
 
 setdiff_by_ris(x, y)
+
+get_tfs_eval(x)
 
 get_sets(x)
 }
@@ -69,12 +73,33 @@ A [set][NetworkEval::set] object.
 
 A [set][NetworkEval::set] object.
 
+A character vector
+
 A list of `set` objets.
 }
 \description{
+The show methods for set objects
 
-}
-\details{
+The show methods for cset objects
+
+The show methods for pset objects
+
+Get list of RIS from a set object.
+
+Get numbers of RIs from a set object.
+
+Get list of TFs from a set object.
+
+Get number TFs from a set object.
+
+Intersect 2 sets by RIs.
+
+Union 2 sets by RIs
+
+Setdiff between 2 sets by RIs
+
+Accessor function to get list of TFs fron evalset objet.
+
 #' @name get_tfs_n
 #' @aliases get_tf,set-method
 #' @param x An `evalset` object
