@@ -8,6 +8,8 @@ generate_roc_curve(x)
 }
 \arguments{
 \item{evalset}{An evalset object.}
+
+\item{score}{An character vector indicating which score to process.}
 }
 \value{
 A plot.

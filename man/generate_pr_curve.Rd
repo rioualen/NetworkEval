@@ -4,7 +4,7 @@
 \alias{generate_pr_curve}
 \title{Generate a precision-recall curve for a given evalset object.}
 \usage{
-generate_pr_curve(x)
+generate_pr_curve(x, s)
 }
 \arguments{
 \item{evalset}{An evalset object.}
