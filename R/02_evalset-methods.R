@@ -467,7 +467,7 @@ setMethod(
     genes <- get_regulondb_genes()
 
     all_combinations <- expand.grid(tfs, genes, stringsAsFactors = F)
-    colnames(all_combinations) <- c("tf_symbol", "gene_symbol")
+    colnames(all_combinations) <- c("tf_bnum", "gene_bnum")
     all_combinations <- all_combinations %>% dplyr::distinct() ## should be filtered upstream
 
     universe <- set(all_combinations, tfs)
@@ -511,22 +511,33 @@ setMethod("generate_confusion_matrix",
 #' @description Generate a ROC curve for a given evalset object..
 #' @author Claire Rioualen
 #' @param evalset An evalset object.
+#' @param score An character vector indicating which score to process.
 #' @return A plot.
-#' @import ROCR
+#' @import rlist
+#' @import reshape2
+#' @import ggplot2
+#' @import plotROC
 #' @export
 setGeneric("generate_roc_curve",
-           valueClass = "NULL",
-           function(x){
+           valueClass = "gg",
+           # function(x, s){
+            function(x){
              standardGeneric("generate_roc_curve")
            }
 )
 setMethod("generate_roc_curve",
           signature(x = "evalset"),
           function(x) {
+          # function(x, s) {
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
             pred <- x@pred_set@ris
-            scores <- x@pred_set@scores
+
+            # scores <- list()
+            # for (s in names(x@pred_set@scores)) {
+            #   scores[[s]] <-
+            # }
+            scores <- list.cbind(x@pred_set@scores)
 
             labels <- c()
             for (i in 1:nrow(pred)) {
@@ -539,14 +550,29 @@ setMethod("generate_roc_curve",
                 labels <- c(labels, NA)
               }
             }
-            df <- cbind.data.frame(scores, labels)
-            df <- na.omit(df)
 
-            pred <- prediction(df$scores, df$labels)
+            # df <- cbind.data.frame(scores, labels)
+            # df <- na.omit(df)
+#
+#             labs <- matrix(labels, nrow = length(labels), ncol = 2)
+#             predic <- prediction(scores, labs)
+#
+#             perf <- performance(predic,"tpr","fpr")
+#             plot(perf,colorize=TRUE, add=TRUE)
 
-            perf <- performance(pred,"tpr","fpr")
-            plot(perf,colorize=TRUE)
-          }
+            long_data <- melt(cbind.data.frame(scores, labels), id="labels")
+
+
+
+            ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
+              geom_roc(labels = FALSE, size=0.5) +
+              style_roc(theme = theme_grey) +
+              labs(color='Score type')# +
+              #scale_color_brewer(palette="Set3")#+ geom_rocci(fill="pink")
+
+            # calc_auc(ggroc)
+            ggroc
+            }
 )
 
 #' @name generate_pr_curve
@@ -556,20 +582,23 @@ setMethod("generate_roc_curve",
 #' @param evalset An evalset object.
 #' @return A plot.
 #' @import ROCR
+#' @import rlist
 #' @export
 setGeneric("generate_pr_curve",
            valueClass = "NULL",
-           function(x){
+           function(x, s){
              standardGeneric("generate_pr_curve")
            }
 )
 setMethod("generate_pr_curve",
           signature(x = "evalset"),
-          function(x) {
+          function(x, s) {
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
             pred <- x@pred_set@ris
-            scores <- x@pred_set@scores
+            # scores <- x@pred_set@scores[[s]]
+            scores <- list.cbind(x@pred_set@scores)
+
 
             labels <- c()
             for (i in 1:nrow(pred)) {
@@ -582,13 +611,44 @@ setMethod("generate_pr_curve",
                 labels <- c(labels, NA)
               }
             }
-            df <- cbind.data.frame(scores, labels)
-            df <- na.omit(df)
+            # df <- cbind.data.frame(scores, labels)
+            # df <- na.omit(df)
+            labs <- matrix(labels, nrow = length(labels), ncol = 2)
+            predic <- prediction(scores, labs)
 
-            pred <- prediction(df$scores, df$labels)
-
-            pr <- performance(pred,"prec","rec")
+            pr <- performance(predic,"prec","rec")
             plot(pr,colorize=TRUE)
+
+            # sscurves <- evalmod(scores = scores, labels = labels)
+            # ssdf <- fortify(sscurves)
+            #
+            # p_roc <- ggplot(subset(ssdf, curvetype == "ROC"), aes(x = x, y = y))
+            # p_roc <- p_roc + geom_line()
+            # p_roc
+            #
+            # p_prc <- ggplot(subset(ssdf, curvetype == "PRC"), aes(x = x, y = y))
+            # p_prc <- p_prc + geom_line()
+            # p_prc
+            #
+            # samps <- create_sim_samples(1, 10, 10, "all")
+            # mdat <- mmdata(samps[["scores"]], samps[["labels"]],
+            #                modnames = samps[["modnames"]])
+            #
+            # ## Generate an mscurve object that contains ROC and Precision-Recall curves
+            # mscurves <- evalmod(mdat)
+            #
+            # ## Let ggplot internally call fortify
+            # p_rocprc <- ggplot(mscurves, aes(x = x, y = y, color = modname))
+            # p_rocprc <- p_rocprc + geom_line()
+            # p_rocprc <- p_rocprc + facet_wrap(~curvetype)
+            # p_rocprc
+            #
+            # ## Let ggplot internally call fortify
+            # p_rocprc <- ggplot(sscurves %>% filter(curvetype=="PRC"), aes(x = x, y = y))+ geom_line()
+            # p_rocprc <- p_rocprc + geom_line()
+            # p_rocprc <- p_rocprc + facet_wrap(~curvetype)
+            # p_rocprc
+
           }
 )
 
@@ -614,11 +674,11 @@ setMethod("generate_venn_diagram",
 
             data <- list()
             for (n in names(get_sets(x))) {
-              data[[n]] <- paste0(slot(x, n)@ris$tf_symbol, "_", slot(x, n)@ris$gene_symbol)
+              data[[n]] <- paste0(slot(x, n)@ris$tf_bnum, "_", slot(x, n)@ris$gene_bnum)
             }
             if (universe==TRUE){
               universe <- get_universe(x)
-              data[["universe"]] <- paste0(universe@ris$tf_symbol, "_", universe@ris$gene_symbol)
+              data[["universe"]] <- paste0(universe@ris$tf_bnum, "_", universe@ris$gene_bnum)
             }
 
             if (style == 1) {

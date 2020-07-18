@@ -27,10 +27,12 @@ get_regulondb_tfs <- function() {
 #' @export
 get_regulondb_genes <- function() {
 
-  genes_df <- read.delim("regulondb/GeneProductSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
-  genes <- unique(sort(genes_df$V2))
-  genes <- genes[!genes %in% c("", "3'ETS<sup><i>leuZ</i></sup>")] ## should disappear once once we have a proper way to handle genes
+  master_genes <- read.delim("regulondb/GeneProduct-IDs.tsv", comment.char = "#", header = F, stringsAsFactors = F)
+  colnames(master_genes) <- c("REGULONDB_ID", "ECOCYC_ID", "BNUMBER", "GENE_NAME", "GENE_SYNONYMS", "GENE_POSLEFT", "GENE_POSRIGHT", "GENE_STRAND", "GENE_TYPE",
+                              "PRODUCT_ID", "PRODUCT_NAME", "PRODUCT_SYNONYMS", "PRODUCT_TYPE")
 
+  # genes_df <- read.delim("regulondb/GeneProductSet.txt", header=F, sep="\t", comment.char = "#", stringsAsFactors = F)
+  genes <- unique(sort(master_genes$BNUMBER))
   genes
 }
 

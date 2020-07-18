@@ -163,7 +163,7 @@ setMethod(
   "get_tfs",
   signature(x = "set"),
   function(x) {
-    x@tfs
+    sort(x@tfs)
   }
 )
 
@@ -294,9 +294,12 @@ setMethod(
   "subset_by_tfs",
   signature(set = "set", tfs = "character"),
   function(set, tfs) {
-    ris <- set@ris %>% filter(tf_symbol %in% tfs)
+    ris <- set@ris %>% filter(tf_bnum %in% tfs)
     tfs <- intersect(set@tfs, tfs)
-
-    set(ris, tfs)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
+    if (class(set)[1] == "cset") {
+      cset(set(ris, tfs), set@type, set@id)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
+    } else if (class(set)[1] == "pset") {
+      pset(set(ris, tfs), set@scores)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
+    }
   }
 )
