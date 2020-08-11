@@ -76,8 +76,7 @@ setMethod("show",
             cat("First 10 entries of ", length(x@tfs), "\n")
             print(x@tfs[1:10])
             cat("<List of scores>\n")
-            cat("First 10 entries of ", nrow(x@scores), "\n")
-            print(x@scores[1:10,])
+            print(x@scores)
           }
 )
 
@@ -97,7 +96,7 @@ setMethod(
   "summarize",
   signature(x = "set"),
   function(x) {
-    data.frame(number_of_regulatory_interactions = get_ris_n(x), number_of_TFs = get_tfs_n(x))
+    data.frame(RIs = get_ris_n(x), TFs = get_tfs_n(x))
   })
 
 #================================================================
@@ -214,7 +213,7 @@ setMethod(
   function(x, y) {
     stopifnot(identical(get_tfs(x), get_tfs(y)))
 
-    ris <- dplyr::intersect(x@ris, y@ris)
+    ris <- dplyr::intersect(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
     set(ris, tfs)
   }
@@ -241,7 +240,7 @@ setMethod(
   function(x, y) {
     stopifnot(identical(get_tfs(x), get_tfs(y)))
 
-    ris <- dplyr::union(x@ris, y@ris)
+    ris <- dplyr::union(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
     set <- set(ris, tfs)
     set
@@ -270,7 +269,7 @@ setMethod(
   function(x, y) {
     stopifnot(identical(get_tfs(x), get_tfs(y)))
 
-    ris <- dplyr::setdiff(x@ris, y@ris)
+    ris <- dplyr::setdiff(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
     set <- set(ris, tfs)
     set
@@ -299,7 +298,7 @@ setMethod(
     if (class(set)[1] == "cset") {
       cset(set(ris, tfs), set@type, set@id)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
     } else if (class(set)[1] == "pset") {
-      pset(set(ris, tfs), set@scores)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
+      pset(set(ris, tfs), set@scores, set@id)         ## Maybe issue a warning if one or several TFs are absent from the set to be subsetted
     }
   }
 )
