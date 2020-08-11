@@ -21,8 +21,8 @@ date: '`r Sys.Date()`'
 author: 'Claire Rioualen'
 params:
   evalset: !r my_eval
-  predictions: !r predicted_set
-  id: !r pos_set_id
+  # predictions: !r predicted_set
+  # id: !r pos_set_id
   # discarded: !r discarded_tfs
 ---
 
@@ -63,14 +63,15 @@ gene_list_by_any_name <- c(gene_list_by_symbol, gene_list_by_synonyms)
 
 ```
 
-# Prediction set: `r pred_set_id`
+# Prediction set: `r my_eval@pred_set@id`
 
 ## Summary of input interactions
 
 ```{r pred-set-1}
 # cat(paste0("Evaluated set: ", pred_set_id))
 
-kable(summarize(predicted_set), digits=2, format.args = list(big.mark = ','))  %>% kable_styling(full_width = F, font_size = 20)
+table <- data.frame(RIs = get_ris_n(my_eval@pred_set) + nrow(my_eval@out_ris), TFs = get_tfs_n(my_eval@pred_set) + length(my_eval@out_tfs))
+kable(table, digits=2, format.args = list(big.mark = ','))  %>% kable_styling(full_width = F, font_size = 20)
 
 # cat("<b>List of TFs: </b>")
 # cat(paste0((get_tfs(my_eval@pred_set)), collapse = ", "))
@@ -95,11 +96,10 @@ cat(paste0("\n\n* Total: ", length(tfs_in)))
 The following TFs were discarded, for there is no control available to evaluate their interactions:
 
 ```{r pred-set-3}
-
-tfs_out <- setdiff(get_tfs(predicted_set), get_tfs(filtered_predicted_set))
+tfs_out <- my_eval@out_tfs
 tfs_out <- sapply(tfs_out, FUN=function(x){gene_list_by_bnum[[x]]$GENE_NAME[1]})
 
-cat(paste0((sort(tfs_out)), collapse = ", "))
+if (length(tfs_out) != 0) { cat(paste0((sort(tfs_out)), collapse = ", ")) }
 
 cat(paste0("\n\n* Total: ", length(tfs_out)))
 
@@ -107,7 +107,7 @@ cat(paste0("\n\n* Total: ", length(tfs_out)))
 
 The interactions involving those TFs are also discarded of the evaluation.
 
-* Number of interactions excluded: `r get_ris_n(predicted_set)-get_ris_n(my_eval@pred_set)`
+* Number of interactions excluded: `r nrow(my_eval@out_ris)`
 
 # Evaluation
 
@@ -155,26 +155,32 @@ generate_venn_diagram(my_eval, style=1, universe=TRUE)
 generate_venn_diagram(my_eval, style=2, universe=TRUE)
 ```
 
-## Curves
+```{r evalset-6, fig.width=12, fig.height=12}
 
-### ROC curve
+if (length(my_eval@pred_set@scores) >= 1) {
+   cat(paste0("\n\n## ROC curves\n"))
 
-NB: curve based on `r round(get_ris_n(inner_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1)`% of the data.
+   cat(paste0("\n\nNB: curve based on ", round(get_ris_n(inner_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1), "% of the data.\n\n"))
 
-```{r evalset-6}
-# for (s in names(my_eval@pred_set@scores)) {
-#    cat(paste0("\n\n#### ", s, " \n\n"))
-   # generate_roc_curve(my_eval, s)
-# }
-generate_roc_curve(my_eval)
-```
+   roc <- generate_roc_curve(my_eval)
+   
+   plot(roc$curve)
+   
+   kable(roc$auc, digits=3, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 12, bootstrap_options = c("striped", "hover"))
+}
 
-### Precision-Recall curve
+if (length(my_eval@pred_set@scores) >= 1) {
+      
+   cat(paste0("\n\n## ROC curves -- shuffled scores\n"))
 
-NB: curve based on `r round(get_ris_n(inner_set(my_eval))/get_ris_n(my_eval@pred_set)*100, 1)`% of the data.
-
-```{r evalset-7}
-# generate_pr_curve(my_eval)
+   shuffled_eval <- shuffle_scores(my_eval)
+   
+   roc <- generate_roc_curve(shuffled_eval)
+   
+   plot(roc$curve)
+   
+   #kable(roc$auc, digits=3, format.args = list(big.mark = ',')) %>% kable_styling(full_width = F, font_size = 12, bootstrap_options = c("striped", "hover"))
+}
 ```
 
 # Control sets
