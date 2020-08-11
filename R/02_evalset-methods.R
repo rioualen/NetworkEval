@@ -454,6 +454,7 @@ setMethod(
 #' @return universe A `set` object of all combinations.
 #' @export
 #' @import dplyr
+#' @import EcoliGenes
 setGeneric("get_universe",
            valueClass = "set",
            function(x){
@@ -464,7 +465,7 @@ setMethod(
   signature(x = "evalset"),
   function(x) {
     tfs <- get_tfs_eval(x)
-    genes <- get_regulondb_genes()
+    genes <- EcoliGenes::get_tfs()
 
     all_combinations <- expand.grid(tfs, genes, stringsAsFactors = F)
     colnames(all_combinations) <- c("tf_bnum", "gene_bnum")
