@@ -18,7 +18,9 @@ setClass(
     pos_set = "cset",
     neg_set = "cset",
     pred_set = "pset",
-    tfs = "character"
+    tfs = "character",
+    out_tfs = "character",
+    out_ris = "data.frame"
   )
 )
 
@@ -37,13 +39,13 @@ setClass(
 #' @return An `evalset` object.
 #' @export
 
-evalset <-  function(pos_set, neg_set, pred_set) {
+evalset <-  function(pos_set, neg_set, pred_set, out_tfs, out_ris) {
   # stopifnot(is.data.frame(ris))
   stopifnot(identical(get_tfs(pos_set), get_tfs(neg_set)))
   stopifnot(identical(get_tfs(pos_set), get_tfs(pred_set)))
 
   tfs <- get_tfs(pos_set)
-  new("evalset", pos_set = pos_set, neg_set = neg_set, pred_set = pred_set, tfs = tfs)
+  new("evalset", pos_set = pos_set, neg_set = neg_set, pred_set = pred_set, tfs = tfs, out_tfs = out_tfs, out_ris = out_ris)
 }
 
 
