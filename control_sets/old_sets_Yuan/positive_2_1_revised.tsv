@@ -1,7 +1,0 @@
-tf_bnum	tf_symbol	gene_bnum	gene_symbol	valid_tf	valid_gene
-b1712	ihfA	b3767	ilvG_1	TRUE	FALSE
-b1712	ihfA	b3768	ilvG_2	TRUE	FALSE
-b0912	ihfB	b3767	ilvG_1	TRUE	FALSE
-b0912	ihfB	b3768	ilvG_2	TRUE	FALSE
-b0889	lrp	b3767	ilvG_1	TRUE	FALSE
-b0889	lrp	b3768	ilvG_2	TRUE	FALSE
