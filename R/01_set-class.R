@@ -128,7 +128,8 @@ setClass(
   slots = list(
     ris = "data.frame",
     tfs = "character",
-    scores = "list"
+    scores = "character",
+    id = "character"
   )
 )
 
@@ -143,10 +144,10 @@ setClass(
 #' @return A `pset` object.
 #' @export
 
-pset <-  function(set, scores) {
+pset <-  function(set, scores, id) {
   # stopifnot(is.numeric(scores))
 
-  new("pset", ris = set@ris, tfs = set@tfs, scores = scores)
+  new("pset", ris = set@ris, tfs = set@tfs, scores = scores, id = id)
 
 }
 
