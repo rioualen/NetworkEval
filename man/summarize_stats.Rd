@@ -17,7 +17,7 @@ Generate a table of stats for a given evalset object: sensitivity, specificity, 
 }
 \details{
 #' @name show
-#' @title
+#' @title Show `evalset` object
 #' @aliases show,evalset-method
 #' @param x An `evalset` object
 #' @docType methods

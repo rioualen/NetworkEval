@@ -12,7 +12,7 @@ generate_roc_curve(x)
 \item{score}{An character vector indicating which score to process.}
 }
 \value{
-A plot.
+A list containing a plot and a dataframe
 }
 \description{
 Generate a ROC curve for a given evalset object..

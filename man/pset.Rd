@@ -4,7 +4,7 @@
 \alias{pset}
 \title{Constructor function of a pset object.}
 \usage{
-pset(set, scores)
+pset(set, scores, id)
 }
 \arguments{
 \item{set}{A `set` object.}

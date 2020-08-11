@@ -4,7 +4,7 @@
 \alias{evalset}
 \title{Constructor function of the EvalSet object}
 \usage{
-evalset(pos_set, neg_set, pred_set)
+evalset(pos_set, neg_set, pred_set, out_tfs, out_ris)
 }
 \arguments{
 \item{pos_set}{A set object to be used a positive control.}

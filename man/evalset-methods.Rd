@@ -31,7 +31,9 @@
 \alias{outer_set}
 \alias{outer_set,evalset-method}
 \alias{inner_set}
-\title{}
+\alias{shuffle_scores}
+\alias{shuffle_scores,evalset-method}
+\title{Get TP number}
 \usage{
 true_pos(x)
 
@@ -62,6 +64,8 @@ fdr(x)
 outer_set(x)
 
 inner_set(x)
+
+shuffle_scores(x)
 }
 \arguments{
 \item{x}{An `evalset` object}
@@ -96,6 +100,8 @@ An numeric
 A `set` object
 
 A `set` object
+
+An `evalset` object
 }
 \description{
 Get the set of RIs in the prediction set that are not in either control set,
@@ -103,4 +109,6 @@ and thus not taken into account for classic statistics computation
 
 Get the set of RIs in the prediction set that are not in either control set,
 and thus not taken into account for classic statistics computation
+
+Shuffle scores of predicted set, each score column independently
 }
