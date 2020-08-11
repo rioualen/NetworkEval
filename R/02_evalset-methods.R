@@ -3,7 +3,7 @@
 #================================================================
 
 #' #' @name show
-#' #' @title
+#' #' @title Show `evalset` object
 #' #' @aliases show,evalset-method
 #' #' @param x An `evalset` object
 #' #' @docType methods
@@ -124,7 +124,7 @@ setMethod(
 #================================================================
 
 #' @name true_pos
-#' @title
+#' @title Get TP number
 #' @aliases true_pos,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -145,7 +145,7 @@ setMethod(
 )
 
 #' @name false_pos
-#' @title
+#' @title Get false positive number
 #' @aliases false_pos,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -166,7 +166,7 @@ setMethod(
 )
 
 #' @name true_neg
-#' @title
+#' @title Get TN number
 #' @aliases true_neg,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -187,7 +187,7 @@ setMethod(
 )
 
 #' @name false_neg
-#' @title
+#' @title Get FN number
 #' @aliases false_neg,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -208,7 +208,7 @@ setMethod(
 )
 
 #' @name pred_pos
-#' @title
+#' @title Get PP number
 #' @aliases pred_pos,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -229,7 +229,7 @@ setMethod(
 )
 
 #' @name pred_neg
-#' @title
+#' @title Get negative prediction number
 #' @aliases pred_neg,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -250,7 +250,7 @@ setMethod(
 )
 
 #' @name actual_pos
-#' @title
+#' @title Get actual positives number
 #' @aliases actual_pos,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -271,7 +271,7 @@ setMethod(
 )
 
 #' @name actual_neg
-#' @title
+#' @title Get actual negative number
 #' @aliases actual_neg,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -292,7 +292,7 @@ setMethod(
 )
 
 #' @name total_pop
-#' @title
+#' @title Get total population number
 #' @aliases total_pop,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -313,7 +313,7 @@ setMethod(
 )
 
 #' @name sensitivity
-#' @title
+#' @title Get sensitivity value
 #' @aliases sensitivity,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -334,7 +334,7 @@ setMethod(
 )
 
 #' @name specificity
-#' @title
+#' @title Get specificity
 #' @aliases specificity,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -355,7 +355,7 @@ setMethod(
 )
 
 #' @name precision
-#' @title
+#' @title Get precision value
 #' @aliases precision,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -376,7 +376,7 @@ setMethod(
 )
 
 #' @name fdr
-#' @title
+#' @title Get FDR value
 #' @aliases fdr,evalset-method
 #' @param x An `evalset` object
 #' @docType methods
@@ -401,7 +401,7 @@ setMethod(
 #================================================================
 
 #' @name outer_set
-#' @title
+#' @title Get outer set size
 #' @aliases outer_set,evalset-method
 #' @description Get the set of RIs in the prediction set that are not in either control set,
 #' and thus not taken into account for classic statistics computation
@@ -424,7 +424,7 @@ setMethod(
 )
 
 #' @name inner_set
-#' @title
+#' @title Get nner set size
 #' @aliases outer_set,evalset-method
 #' @description Get the set of RIs in the prediction set that are not in either control set,
 #' and thus not taken into account for classic statistics computation
@@ -512,14 +512,15 @@ setMethod("generate_confusion_matrix",
 #' @author Claire Rioualen
 #' @param evalset An evalset object.
 #' @param score An character vector indicating which score to process.
-#' @return A plot.
+#' @return A list containing a plot and a dataframe
 #' @import rlist
 #' @import reshape2
 #' @import ggplot2
 #' @import plotROC
+#' @import dplyr
 #' @export
 setGeneric("generate_roc_curve",
-           valueClass = "gg",
+           valueClass = "list",
            # function(x, s){
             function(x){
              standardGeneric("generate_roc_curve")
@@ -531,17 +532,20 @@ setMethod("generate_roc_curve",
           # function(x, s) {
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
-            pred <- x@pred_set@ris
+            pred_data <- x@pred_set@ris
+            pred_ris <- pred_data[c("tf_bnum", "gene_bnum")]
+            score_names <- x@pred_set@scores
 
             # scores <- list()
             # for (s in names(x@pred_set@scores)) {
             #   scores[[s]] <-
             # }
-            scores <- list.cbind(x@pred_set@scores)
+            # scores <- list.cbind(x@pred_set@scores)
+            scores <- pred_data %>% dplyr::select(all_of(score_names))
 
             labels <- c()
-            for (i in 1:nrow(pred)) {
-              t <- pred[i,, drop=FALSE]
+            for (i in 1:nrow(pred_ris)) {
+              t <- pred_ris[i,, drop=FALSE]
               if (nrow(dplyr::intersect(t, pos)) == 1){
                 labels <- c(labels, 1)
               } else if (nrow(dplyr::intersect(t, neg)) == 1) {
@@ -550,29 +554,20 @@ setMethod("generate_roc_curve",
                 labels <- c(labels, NA)
               }
             }
-
-            # df <- cbind.data.frame(scores, labels)
-            # df <- na.omit(df)
-#
-#             labs <- matrix(labels, nrow = length(labels), ncol = 2)
-#             predic <- prediction(scores, labs)
-#
-#             perf <- performance(predic,"tpr","fpr")
-#             plot(perf,colorize=TRUE, add=TRUE)
-
-            long_data <- melt(cbind.data.frame(scores, labels), id="labels")
-
-
+            long_data <- reshape2::melt(cbind.data.frame(scores, labels), id="labels")
 
             ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
               geom_roc(labels = FALSE, size=0.5) +
-              style_roc(theme = theme_grey) +
-              labs(color='Score type')# +
-              #scale_color_brewer(palette="Set3")#+ geom_rocci(fill="pink")
+              style_roc(theme = theme_grey)
 
-            # calc_auc(ggroc)
-            ggroc
-            }
+            AUC <- round(calc_auc(ggroc)$AUC, 3)
+            colors <- scales::hue_pal()(13)
+
+            ggroc <- ggroc + scale_color_manual(labels = paste0(levels(long_data$variable), " (AUC = ", AUC, ")"), values = colors, name = "Score type")
+
+            auc <- cbind.data.frame(score_names, AUC)
+            list(curve=ggroc, auc=auc)
+          }
 )
 
 #' @name generate_pr_curve
@@ -681,6 +676,7 @@ setMethod("generate_venn_diagram",
               data[["universe"]] <- paste0(universe@ris$tf_bnum, "_", universe@ris$gene_bnum)
             }
 
+            data$pred_set <- unique(data$pred_set) ###### temp hay que ver que pedo con las duplicaciones
             if (style == 1) {
               graph <- venn(data)
             } else if (style == 2) {
@@ -692,30 +688,64 @@ setMethod("generate_venn_diagram",
           }
 )
 
+#' @name shuffle_scores
+#' @title Shuffle scores
+#' @aliases shuffle_scores,evalset-method
+#' @description Shuffle scores of predicted set, each score column independently
+#' @param x An `evalset` object
+#' @docType methods
+#' @rdname evalset-methods
+#' @return An `evalset` object
+#' @export
+setGeneric("shuffle_scores",
+           valueClass = "evalset",
+           function(x){
+             standardGeneric("shuffle_scores")
+           })
+setMethod(
+  "shuffle_scores",
+  signature(x = "evalset"),
+  function(x) {
+    ## method 1 - shuffle score columns individually
+    for (score in x@pred_set@scores) {
+      x@pred_set@ris <- x@pred_set@ris %>% mutate(!!score := sample(get(score)))#  !!as.name(score) = sample(!!as.name(score)))
+    }
+    ## method 2 - shuffle all score together
+    # set.seed(42)
+    # score_df <- x@pred_set@ris %>% select(x@pred_set@scores)
+    # rows <- sample(nrow(score_df))
+    # diamonds <- score_df[rows, ]
+    # shuffled_set <- cbind.data.frame(x@pred_set@ris[, c("tf_bnum", "gene_bnum")], diamonds)
+    # x@pred_set@ris <- shuffled_set
+
+    evalset(pos_set = x@pos_set, neg_set = x@neg_set, pred_set = x@pred_set, out_tfs = x@out_tfs, out_ris = x@out_ris)
+  }
+)
+
 #================================================================
 # Evalset methods: generate report
 #================================================================
 
-#' @name write_report
-#' @title Generate a report of the analyses.
-#' @description Generate a report summarizing all the statistics en graphes generated for one or several evaluations.
-#' @author Claire Rioualen
-#' @param eval_list An list of Evaluation objects.
-#' @return A plot.
-#' @import rmarkdown
-#' @export
-setGeneric("write_report",
-           function(x){
-             standardGeneric("write_report")
-           })
-setMethod(
-  "write_report",
-  signature(x = "evalset"),
-  function(x) {
-    # validObject(evalset)
-    rmarkdown::render("Report.Rmd", params = list(
-      evalset = x
-      ))
-  }
-)
+#' #' @name write_report
+#' #' @title Generate a report of the analyses.
+#' #' @description Generate a report summarizing all the statistics en graphes generated for one or several evaluations.
+#' #' @author Claire Rioualen
+#' #' @param eval_list An list of Evaluation objects.
+#' #' @return A plot.
+#' #' @import rmarkdown
+#' #' @export
+#' setGeneric("write_report",
+#'            function(x){
+#'              standardGeneric("write_report")
+#'            })
+#' setMethod(
+#'   "write_report",
+#'   signature(x = "evalset"),
+#'   function(x) {
+#'     # validObject(evalset)
+#'     rmarkdown::render("Report.Rmd", params = list(
+#'       evalset = x
+#'       ))
+#'   }
+#' )
 
