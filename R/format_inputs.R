@@ -17,14 +17,14 @@ format_pset <- function(file) {
 }
 
 select_tfs <- function(neg_set, pos_set, pred_set) {
-	test_tfs <- intersect(get_tfs(pred_set), get_tfs(pos_set))
-	test_tfs <- intersect(test_tfs, get_tfs(neg_set))
+	test_tfs <- intersect(get_tfs_set(pred_set), get_tfs_set(pos_set))
+	test_tfs <- intersect(test_tfs, get_tfs_set(neg_set))
 
 	filtered_positive_set <- subset_by_tfs(pos_set, test_tfs)
 	filtered_negative_set <- subset_by_tfs(neg_set, test_tfs)
 	filtered_predicted_set <- subset_by_tfs(pred_set, test_tfs)
 
-	tfs_filtered_out <- setdiff(get_tfs(pred_set), test_tfs)
+	tfs_filtered_out <- setdiff(get_tfs_set(pred_set), test_tfs)
 	ris_filtered_out <- pred_set@ris %>% dplyr::filter(tf_bnum %in% tfs_filtered_out)
 
 	list(pos_set = filtered_positive_set, neg_set = filtered_negative_set, pred_set = filtered_predicted_set, out_tfs = tfs_filtered_out, out_ris = ris_filtered_out)

@@ -465,7 +465,7 @@ setMethod(
   signature(x = "evalset"),
   function(x) {
     tfs <- get_tfs_eval(x)
-    genes <- EcoliGenes::get_tfs()
+    genes <- EcoliGenes::get_target_genes()
 
     all_combinations <- expand.grid(tfs, genes, stringsAsFactors = F)
     colnames(all_combinations) <- c("tf_bnum", "gene_bnum")

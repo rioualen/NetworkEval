@@ -9,8 +9,8 @@
 \alias{get_ris,set-methods}
 \alias{get_ris_n}
 \alias{get_ris_n,set-methods}
-\alias{get_tfs}
-\alias{get_tfs,set-methods}
+\alias{get_tfs_set}
+\alias{get_tfs_set,set-methods}
 \alias{get_tfs_n}
 \alias{get_tfs_n,set-methods}
 \alias{intersect_by_ris}
@@ -35,7 +35,7 @@ get_ris(x)
 
 get_ris_n(x)
 
-get_tfs(x)
+get_tfs_set(x)
 
 get_tfs_n(x)
 

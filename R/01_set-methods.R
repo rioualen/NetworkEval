@@ -146,20 +146,20 @@ setMethod(
 )
 
 #' @title Get list of TFs from a set object.
-#' @name get_tfs
-#' @aliases get_tfs,set-methods
+#' @name get_tfs_set
+#' @aliases get_tfs_set,set-methods
 #' @param x A `set` object
 #' @docType methods
 #' @rdname set-methods
 #' @return A character vector
 #' @export
-setGeneric("get_tfs",
+setGeneric("get_tfs_set",
            valueClass = "character",
            function(x){
-             standardGeneric("get_tfs")
+             standardGeneric("get_tfs_set")
            })
 setMethod(
-  "get_tfs",
+  "get_tfs_set",
   signature(x = "set"),
   function(x) {
     sort(x@tfs)
@@ -211,7 +211,7 @@ setMethod(
   "intersect_by_ris",
   signature(x = "set", y = "set"),
   function(x, y) {
-    stopifnot(identical(get_tfs(x), get_tfs(y)))
+    stopifnot(identical(get_tfs_set(x), get_tfs_set(y)))
 
     ris <- dplyr::intersect(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
@@ -238,7 +238,7 @@ setMethod(
   "union_by_ris",
   signature(x = "set", y = "set"),
   function(x, y) {
-    stopifnot(identical(get_tfs(x), get_tfs(y)))
+    stopifnot(identical(get_tfs_set(x), get_tfs_set(y)))
 
     ris <- dplyr::union(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
@@ -267,7 +267,7 @@ setMethod(
   "setdiff_by_ris",
   signature(x = "set", y = "set"),
   function(x, y) {
-    stopifnot(identical(get_tfs(x), get_tfs(y)))
+    stopifnot(identical(get_tfs_set(x), get_tfs_set(y)))
 
     ris <- dplyr::setdiff(x@ris[, c("tf_bnum", "gene_bnum")], y@ris[, c("tf_bnum", "gene_bnum")])
     tfs <- x@tfs
