@@ -2,33 +2,6 @@
 # Evalset methods: show & summarize
 #================================================================
 
-#' #' @name show
-#' #' @title Show `evalset` object
-#' #' @aliases show,evalset-method
-#' #' @param x An `evalset` object
-#' #' @docType methods
-#' #' @rdname evalset-methods
-#' #' @export
-#' setGeneric("show",
-#'            valueClass = "",
-#'            function(x){
-#'              standardGeneric("show")
-#'            })
-#' setMethod("show",
-#'           signature(x = "evalset"),
-#'           function(x) {
-#'             cat("\n<Positive set>\n\n")
-#'             show(x@pos_set)
-#'             cat("\n<Negative set>\n\n")
-#'             show(x@neg_set)
-#'             cat("\n<Predicted set>\n\n")
-#'             show(x@pred_set)
-#'             cat("<List of transcription factors>\n")
-#'             cat("First 10 entries of ", length(x@tfs), "\n")
-#'             print(x@tfs[1:10])
-#'           }
-#' )
-
 #' @name summarize_stats
 #' @title Generate a table of stats for a given evalset object.
 #' @description Generate a table of stats for a given evalset object: sensitivity, specificity, etc.
