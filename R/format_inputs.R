@@ -9,7 +9,8 @@
 #'
 #' @export
 format_cset <- function(id, type, dir = "control_sets") {
-	cset_ris <- read.delim(file = paste0(dir, "/", id, ".tsv"), stringsAsFactors=FALSE, header = T)[, c("tf_bnum", "gene_bnum")]
+	cfile <- system.file(dir, paste0(id, ".tsv"), package = "NetworkEval")
+	cset_ris <- read.delim(file = cfile, stringsAsFactors=FALSE, header = T)[, c("tf_bnum", "gene_bnum")]
 	cset_tfs <- unique(cset_ris$tf_bnum)
 	cset <- cset(set(ris = cset_ris, tfs = cset_tfs), id = id, type = type)
 	cset
