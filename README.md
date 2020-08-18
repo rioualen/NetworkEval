@@ -17,7 +17,7 @@ The input interaction file must be formatted as follows:
 
 * It has at least two columns containing TF bnumbers and target genes bnumbers, and named "tf_bnum" and "gene_bnum".
 
-* Gene names con be converted to bnumbers using the [EcoliGenes](https://github.com/rioualen/EcoliGenes) packages (hopefully the conversion should be integrated in the evaluation process).
+* Gene names can be converted to bnumbers using the [EcoliGenes](https://github.com/rioualen/EcoliGenes) package (hopefully the conversion should be soon integrated in the evaluation process).
 
 * Optionally, the file can contain one or more score columns, which name should be prefixed by "score_". This allows to generate ROC curves.
 
@@ -25,7 +25,7 @@ The input interaction file must be formatted as follows:
 ``` r
 library(NetworkEval)
 
-## Run a quick test set with small control sets
+## Run a quick test set with small control sets || only works with a locally downloaded copy of the package - to be fixed
 testfile="test_sets/test_90_10_scores.tsv"
 run_eval(testfile, pos_set_id = "test_pos", neg_set_id = "test_neg")
 

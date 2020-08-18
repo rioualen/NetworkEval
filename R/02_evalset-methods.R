@@ -746,32 +746,32 @@ output_files <- function(x) {
 
   ## Create tables summarizing the number of TFs and RIs from the input file and after TF selection
 
-  in_stats <- data.frame(RIs = get_ris_n(my_eval@pred_set) + nrow(my_eval@out_ris), TFs = get_tfs_n(my_eval@pred_set) + length(my_eval@out_tfs))
-  out_stats <- summarize(my_eval@pred_set)
+  in_stats <- data.frame(RIs = get_ris_n(x@pred_set) + nrow(x@out_ris), TFs = get_tfs_n(x@pred_set) + length(x@out_tfs))
+  out_stats <- summarize(x@pred_set)
 
   write.table(in_stats, file=paste0(id_set, "/in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
   write.table(out_stats, file=paste0(id_set, "/out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
-  tfs_in <- EcoliGenes::bnumber_to_symbol(get_tfs_eval(my_eval))
-  tfs_out <- EcoliGenes::bnumber_to_symbol(my_eval@out_tfs)
+  tfs_in <- EcoliGenes::bnumber_to_symbol(get_tfs_eval(x))
+  tfs_out <- EcoliGenes::bnumber_to_symbol(x@out_tfs)
 
   write.table(sort(tfs_in), file=paste0(id_set, "/tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
   if (length(tfs_out>=1)) { write.table(sort(tfs_out), file=paste0(id_set, "/tfs_out.tsv"), quote = F, col.names = F, row.names = F, sep = "\t") }
 
   ## Create tables with stats results
 
-  write.table(summarize_stats(my_eval), file=paste0(id_set, "/statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
-  write.table(generate_confusion_matrix(my_eval), file=paste0(id_set, "/confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(summarize_stats(x), file=paste0(id_set, "/statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(generate_confusion_matrix(x), file=paste0(id_set, "/confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   ## Save figures
 
   pdf(paste0(id_set, "/venn.pdf"))
-  gridExtra::grid.arrange(generate_venn_diagram(my_eval, style=1, universe=FALSE))
+  gridExtra::grid.arrange(generate_venn_diagram(x, style=1, universe=FALSE))
   dev.off()
 
-  if (length(my_eval@pred_set@scores) >= 1) {
+  if (length(x@pred_set@scores) >= 1) {
     pdf(paste0(id_set, "/roc.pdf"))
-    roc <- generate_roc_curve(my_eval)
+    roc <- generate_roc_curve(x)
     plot(roc$curve)
     dev.off()
   }
