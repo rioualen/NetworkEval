@@ -503,11 +503,10 @@ setGeneric("generate_roc_curve",
 setMethod("generate_roc_curve",
           signature(x = "evalset"),
           function(x) {
-          # function(x, s) {
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
             pred_data <- x@pred_set@ris
-            pred_ris <- pred_data[c("tf_bnum", "gene_bnum")]
+            # pred_ris <- pred_data[c("tf_bnum", "gene_bnum")]
             score_names <- x@pred_set@scores
 
             # scores <- list()
@@ -517,18 +516,26 @@ setMethod("generate_roc_curve",
             # scores <- list.cbind(x@pred_set@scores)
             scores <- pred_data %>% dplyr::select(all_of(score_names))
 
-            labels <- c()
-            for (i in 1:nrow(pred_ris)) {
-              t <- pred_ris[i,, drop=FALSE]
-              if (nrow(dplyr::intersect(t, pos)) == 1){
-                labels <- c(labels, 1)
-              } else if (nrow(dplyr::intersect(t, neg)) == 1) {
-                labels <- c(labels, 0)
-              } else {
-                labels <- c(labels, NA)
-              }
-            }
-            long_data <- reshape2::melt(cbind.data.frame(scores, labels), id="labels")
+            # labels <- c()
+            # for (i in 1:nrow(pred_ris)) {
+            #   t <- pred_ris[i,, drop=FALSE]
+            #   if (nrow(dplyr::intersect(t, pos)) == 1){
+            #     labels <- c(labels, 1)
+            #   } else if (nrow(dplyr::intersect(t, neg)) == 1) {
+            #     labels <- c(labels, 0)
+            #   } else {
+            #     labels <- c(labels, NA)
+            #   }
+            # }
+            # long_data <- reshape2::melt(cbind.data.frame(scores, labels), id="labels")
+
+            pos <- pos %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
+            neg <- neg %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
+
+            pred_data <- pred_data %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>% dplyr::mutate(labels = ifelse(pair %in% pos$pair,1,ifelse(pair %in% neg$pair,0,NA))) %>%
+              dplyr::select(-pair)
+
+            long_data <- reshape2::melt(pred_data %>% dplyr::select(!!score_names, labels), id="labels")
 
             ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
               geom_roc(labels = FALSE, size=0.5) +
@@ -722,4 +729,51 @@ setMethod(
 #'       ))
 #'   }
 #' )
+
+#' @name output_files
+#' @title Create a directory with tables and figures.
+#' @description Create a directory with tables and figures.
+#' @author Claire Rioualen
+#' @param x An `evalset` object
+#'
+#' @import gridExtra
+#' @export
+output_files <- function(x) {
+
+  ## Create directory of the same name as the input file
+  id_set <- x@pred_set@id
+  dir.create(id_set)
+
+  ## Create tables summarizing the number of TFs and RIs from the input file and after TF selection
+
+  in_stats <- data.frame(RIs = get_ris_n(my_eval@pred_set) + nrow(my_eval@out_ris), TFs = get_tfs_n(my_eval@pred_set) + length(my_eval@out_tfs))
+  out_stats <- summarize(my_eval@pred_set)
+
+  write.table(in_stats, file=paste0(id_set, "/in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(out_stats, file=paste0(id_set, "/out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+
+  tfs_in <- EcoliGenes::bnumber_to_symbol(get_tfs_eval(my_eval))
+  tfs_out <- EcoliGenes::bnumber_to_symbol(my_eval@out_tfs)
+
+  write.table(sort(tfs_in), file=paste0(id_set, "/tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
+  if (length(tfs_out>=1)) { write.table(sort(tfs_out), file=paste0(id_set, "/tfs_out.tsv"), quote = F, col.names = F, row.names = F, sep = "\t") }
+
+  ## Create tables with stats results
+
+  write.table(summarize_stats(my_eval), file=paste0(id_set, "/statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(generate_confusion_matrix(my_eval), file=paste0(id_set, "/confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+
+  ## Save figures
+
+  pdf(paste0(id_set, "/venn.pdf"))
+  gridExtra::grid.arrange(generate_venn_diagram(my_eval, style=1, universe=FALSE))
+  dev.off()
+
+  if (length(my_eval@pred_set@scores) >= 1) {
+    pdf(paste0(id_set, "/roc.pdf"))
+    roc <- generate_roc_curve(my_eval)
+    plot(roc$curve)
+    dev.off()
+  }
+}
 

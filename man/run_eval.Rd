@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_eval.R
 \name{run_eval}
 \alias{run_eval}
-\title{Run the evaluation of a predictoin set.}
+\title{Run the evaluation of a prediction set.}
 \usage{
 run_eval(testfile, neg_set_id = "all_negative", pos_set_id = "all_positive")
 }
