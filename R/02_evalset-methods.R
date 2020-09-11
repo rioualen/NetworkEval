@@ -495,7 +495,6 @@ setMethod("generate_confusion_matrix",
 #' @export
 setGeneric("generate_roc_curve",
            valueClass = "list",
-           # function(x, s){
             function(x){
              standardGeneric("generate_roc_curve")
            }
@@ -506,28 +505,10 @@ setMethod("generate_roc_curve",
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
             pred_data <- x@pred_set@ris
-            # pred_ris <- pred_data[c("tf_bnum", "gene_bnum")]
+
             score_names <- x@pred_set@scores
 
-            # scores <- list()
-            # for (s in names(x@pred_set@scores)) {
-            #   scores[[s]] <-
-            # }
-            # scores <- list.cbind(x@pred_set@scores)
             scores <- pred_data %>% dplyr::select(all_of(score_names))
-
-            # labels <- c()
-            # for (i in 1:nrow(pred_ris)) {
-            #   t <- pred_ris[i,, drop=FALSE]
-            #   if (nrow(dplyr::intersect(t, pos)) == 1){
-            #     labels <- c(labels, 1)
-            #   } else if (nrow(dplyr::intersect(t, neg)) == 1) {
-            #     labels <- c(labels, 0)
-            #   } else {
-            #     labels <- c(labels, NA)
-            #   }
-            # }
-            # long_data <- reshape2::melt(cbind.data.frame(scores, labels), id="labels")
 
             pos <- pos %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
             neg <- neg %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
@@ -538,7 +519,7 @@ setMethod("generate_roc_curve",
             long_data <- reshape2::melt(pred_data %>% dplyr::select(!!score_names, labels), id="labels")
 
             ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
-              geom_roc(labels = FALSE, size=0.5) +
+              geom_roc(labels = F, size=0.5, n.cuts = 0) +
               style_roc(theme = theme_grey)
 
             AUC <- round(calc_auc(ggroc)$AUC, 3)
@@ -551,80 +532,52 @@ setMethod("generate_roc_curve",
           }
 )
 
-#' @name generate_pr_curve
+#' @name generate_prc_curve
 #' @title Generate a precision-recall curve for a given evalset object.
 #' @description Generate a precision-recall curve for a given evalset object.
 #' @author Claire Rioualen
 #' @param evalset An evalset object.
-#' @return A plot.
-#' @import ROCR
+#' @param score An character vector indicating which score to process.
+#' @return A list containing a plot and a dataframe
 #' @import rlist
+#' @import ggplot2
+#' @import precrec
+#' @import dplyr
 #' @export
-setGeneric("generate_pr_curve",
-           valueClass = "NULL",
-           function(x, s){
-             standardGeneric("generate_pr_curve")
+setGeneric("generate_prc_curve",
+           valueClass = "list",
+           function(x){
+             standardGeneric("generate_prc_curve")
            }
 )
-setMethod("generate_pr_curve",
+setMethod("generate_prc_curve",
           signature(x = "evalset"),
-          function(x, s) {
+          function(x) {
             pos <- x@pos_set@ris
             neg <- x@neg_set@ris
-            pred <- x@pred_set@ris
-            # scores <- x@pred_set@scores[[s]]
-            scores <- list.cbind(x@pred_set@scores)
+            pred_data <- x@pred_set@ris
 
+            score_names <- x@pred_set@scores
+            scores <- pred_data %>% dplyr::select(all_of(score_names))
 
-            labels <- c()
-            for (i in 1:nrow(pred)) {
-              t <- pred[i,, drop=FALSE]
-              if (nrow(dplyr::intersect(t, pos)) == 1){
-                labels <- c(labels, 1)
-              } else if (nrow(dplyr::intersect(t, neg)) == 1) {
-                labels <- c(labels, 0)
-              } else {
-                labels <- c(labels, NA)
-              }
-            }
-            # df <- cbind.data.frame(scores, labels)
-            # df <- na.omit(df)
-            labs <- matrix(labels, nrow = length(labels), ncol = 2)
-            predic <- prediction(scores, labs)
+            pos <- pos %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
+            neg <- neg %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
 
-            pr <- performance(predic,"prec","rec")
-            plot(pr,colorize=TRUE)
+            pred_data <- pred_data %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>% dplyr::mutate(labels = ifelse(pair %in% pos$pair,1,ifelse(pair %in% neg$pair,0,NA))) %>%
+              dplyr::select(-pair)
 
-            # sscurves <- evalmod(scores = scores, labels = labels)
-            # ssdf <- fortify(sscurves)
-            #
-            # p_roc <- ggplot(subset(ssdf, curvetype == "ROC"), aes(x = x, y = y))
-            # p_roc <- p_roc + geom_line()
-            # p_roc
-            #
-            # p_prc <- ggplot(subset(ssdf, curvetype == "PRC"), aes(x = x, y = y))
-            # p_prc <- p_prc + geom_line()
-            # p_prc
-            #
-            # samps <- create_sim_samples(1, 10, 10, "all")
-            # mdat <- mmdata(samps[["scores"]], samps[["labels"]],
-            #                modnames = samps[["modnames"]])
-            #
-            # ## Generate an mscurve object that contains ROC and Precision-Recall curves
-            # mscurves <- evalmod(mdat)
-            #
-            # ## Let ggplot internally call fortify
-            # p_rocprc <- ggplot(mscurves, aes(x = x, y = y, color = modname))
-            # p_rocprc <- p_rocprc + geom_line()
-            # p_rocprc <- p_rocprc + facet_wrap(~curvetype)
-            # p_rocprc
-            #
-            # ## Let ggplot internally call fortify
-            # p_rocprc <- ggplot(sscurves %>% filter(curvetype=="PRC"), aes(x = x, y = y))+ geom_line()
-            # p_rocprc <- p_rocprc + geom_line()
-            # p_rocprc <- p_rocprc + facet_wrap(~curvetype)
-            # p_rocprc
+            colors <- scales::hue_pal()(13)
 
+            labels <- pred_data$labels
+            scores <- pred_data %>% select(!!score_names)
+
+            mdat <- mmdata(scores, labels, modnames=score_names)
+            eval <- evalmod(mdat)
+            plot <- autoplot(eval, "PRC") + scale_color_manual(labels = paste0(score_names, " (AUC = ", AUC, ")"), values = colors, name = "Score type")
+            aucs <- auc(eval)
+            aucs <- subset(aucs, curvetypes == "PRC") %>% select(modnames, aucs) %>% rename(scores = modnames, auc = aucs)
+
+            list(curve=plot, auc=aucs)
           }
 )
 
@@ -749,30 +702,37 @@ output_files <- function(x) {
   in_stats <- data.frame(RIs = get_ris_n(x@pred_set) + nrow(x@out_ris), TFs = get_tfs_n(x@pred_set) + length(x@out_tfs))
   out_stats <- summarize(x@pred_set)
 
-  write.table(in_stats, file=paste0(id_set, "/in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
-  write.table(out_stats, file=paste0(id_set, "/out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(in_stats, file=paste0(id_set, "/", id_set, "_in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(out_stats, file=paste0(id_set, "/", id_set, "_out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   tfs_in <- EcoliGenes::bnumber_to_symbol(get_tfs_eval(x))
   tfs_out <- EcoliGenes::bnumber_to_symbol(x@out_tfs)
 
-  write.table(sort(tfs_in), file=paste0(id_set, "/tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
+  write.table(sort(tfs_in), file=paste0(id_set, "/", id_set, "_tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
   if (length(tfs_out>=1)) { write.table(sort(tfs_out), file=paste0(id_set, "/tfs_out.tsv"), quote = F, col.names = F, row.names = F, sep = "\t") }
 
   ## Create tables with stats results
 
-  write.table(summarize_stats(x), file=paste0(id_set, "/statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
-  write.table(generate_confusion_matrix(x), file=paste0(id_set, "/confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(summarize_stats(x), file=paste0(id_set, "/", id_set, "_statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(generate_confusion_matrix(x), file=paste0(id_set, "/", id_set, "_confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   ## Save figures
 
-  pdf(paste0(id_set, "/venn.pdf"))
+  pdf(paste0(id_set, "/", id_set, "_venn.pdf"))
   gridExtra::grid.arrange(generate_venn_diagram(x, style=1, universe=FALSE))
   dev.off()
 
   if (length(x@pred_set@scores) >= 1) {
-    pdf(paste0(id_set, "/roc.pdf"))
+    pdf(paste0(id_set, "/", id_set, "_roc.pdf"))
     roc <- generate_roc_curve(x)
     plot(roc$curve)
+    dev.off()
+  }
+
+  if (length(x@pred_set@scores) >= 1) {
+    pdf(paste0(id_set, "/", id_set, "_prc.pdf"))
+    prc <- generate_prc_curve(x)
+    plot(prc$curve)
     dev.off()
   }
 }
