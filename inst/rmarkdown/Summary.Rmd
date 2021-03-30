@@ -93,10 +93,10 @@ FP <- c()
 
 # set_ids <- list.files("results")
 for(set in set_ids) {
-  confusion <- read.delim(file = paste0(results_dir, "/", set, "/", set, "_confusion_matrix.tsv"), header=T, stringsAsFactors=FALSE)
-  in_ris <- read.delim(file = paste0(results_dir, "/", set, "/", set, "_in_stats.tsv"), header=T, stringsAsFactors=FALSE)
-  out_ris <- read.delim(file = paste0(results_dir, "/", set, "/", set, "_out_stats.tsv"), header=T, stringsAsFactors=FALSE)
-  stats <- read.delim(file = paste0(results_dir, "/", set, "/", set, "_statistics.tsv"), header=T, stringsAsFactors=FALSE)
+  confusion <- read.delim(file = paste0(params$results_dir, "/", set, "/", set, "_confusion_matrix.tsv"), header=T, stringsAsFactors=FALSE)
+  in_ris <- read.delim(file = paste0(params$results_dir, "/", set, "/", set, "_in_stats.tsv"), header=T, stringsAsFactors=FALSE)
+  out_ris <- read.delim(file = paste0(params$results_dir, "/", set, "/", set, "_out_stats.tsv"), header=T, stringsAsFactors=FALSE)
+  stats <- read.delim(file = paste0(params$results_dir, "/", set, "/", set, "_statistics.tsv"), header=T, stringsAsFactors=FALSE)
 
   Set_ID <- c(Set_ID, set)
   RIs_input <- c(RIs_input, in_ris$RIs)
