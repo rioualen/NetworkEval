@@ -153,12 +153,12 @@ ggplot(long, aes(x = Set_ID, y = value)) +
 
 ```{r venn, eval=TRUE, fig.width=8, fig.height=4}
 
-positive_set <- read.delim(file = paste0("inst/control_sets/all_positive.tsv"), header=T, stringsAsFactors=FALSE)
+positive_set <- read.delim(file = system.file("control_sets", "all_positive.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
 positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
 positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
 positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
 
-negative_set <- read.delim(file = paste0("inst/control_sets/all_negative.tsv"), header=T, stringsAsFactors=FALSE)
+negative_set <- read.delim(file = system.file("control_sets", "all_negative.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
 negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
 negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
 negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
