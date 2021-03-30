@@ -480,6 +480,40 @@ setMethod("generate_confusion_matrix",
   }
 )
 
+#' @name stats_per_tf
+#' @title Get TPR per TF
+#' @description Get TPR per TF
+#' @author Claire Rioualen
+#' @param evalset An evalset object.
+#' @return A dataframe
+#' @import dplyr
+#' @export
+setGeneric("stats_per_tf",
+           valueClass = "data.frame",
+           function(x){
+             standardGeneric("stats_per_tf")
+           }
+)
+setMethod("stats_per_tf",
+          signature(x = "evalset"),
+          function(x) {
+            tfs <- x@pred_set@tfs
+
+            pos <- x@pos_set@ris
+            pred <- x@pred_set@ris
+
+            pred <- pred %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
+
+            pos <- pos %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>% dplyr::mutate(labels = ifelse(pair %in% pred$pair,1,0)) %>%
+              dplyr::select(-pair)
+
+
+            tab <- pos %>% dplyr::group_by(tf_bnum) %>% dplyr::mutate(ss=mean(labels), tp=sum(labels), ap=n()) %>% dplyr::select(-gene_bnum, -labels) %>% distinct()
+
+            tab
+          }
+)
+
 #' @name generate_roc_curve
 #' @title Generate a ROC curve for a given evalset object.
 #' @description Generate a ROC curve for a given evalset object..
@@ -525,7 +559,9 @@ setMethod("generate_roc_curve",
             AUC <- round(calc_auc(ggroc)$AUC, 3)
             colors <- scales::hue_pal()(13)
 
-            ggroc <- ggroc + scale_color_manual(labels = paste0(levels(long_data$variable), " (AUC = ", AUC, ")"), values = colors, name = "Score type")
+            ggroc <- ggroc +
+              scale_color_manual(labels = paste0(levels(long_data$variable), " (AUC = ", AUC, ")"), values = colors, name = "Score type") +
+              theme(axis.text=element_text(size=14), axis.title=element_text(size=14), legend.text=element_text(size=12))
 
             auc <- cbind.data.frame(score_names, AUC)
             list(curve=ggroc, auc=auc)
@@ -564,7 +600,7 @@ setMethod("generate_prc_curve",
             neg <- neg %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
 
             pred_data <- pred_data %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>% dplyr::mutate(labels = ifelse(pair %in% pos$pair,1,ifelse(pair %in% neg$pair,0,NA))) %>%
-              dplyr::select(-pair)
+              dplyr::select(-pair) %>% dplyr::filter(! is.na(labels))
 
             colors <- scales::hue_pal()(13)
 
@@ -573,9 +609,11 @@ setMethod("generate_prc_curve",
 
             mdat <- mmdata(scores, labels, modnames=score_names)
             eval <- evalmod(mdat)
-            plot <- autoplot(eval, "PRC") + scale_color_manual(labels = paste0(score_names, " (AUC = ", AUC, ")"), values = colors, name = "Score type")
             aucs <- auc(eval)
             aucs <- subset(aucs, curvetypes == "PRC") %>% select(modnames, aucs) %>% rename(scores = modnames, auc = aucs)
+            AUC <- round(aucs$auc, 3)
+
+            plot <- autoplot(eval, "PRC") + scale_color_manual(labels = paste0(score_names, " (AUC = ", AUC, ")"), values = colors, name = "Score type")
 
             list(curve=plot, auc=aucs)
           }
@@ -690,47 +728,72 @@ setMethod(
 #' @param x An `evalset` object
 #'
 #' @import gridExtra
+#' @import Cairo
 #' @export
 output_files <- function(x) {
 
+  ## Create results directory if it doesn't exist already
+  dir.create(file.path(getwd(), "results"))
+
   ## Create directory of the same name as the input file
   id_set <- x@pred_set@id
-  dir.create(id_set)
+  dir.create(file.path(getwd(), "results", id_set))
 
   ## Create tables summarizing the number of TFs and RIs from the input file and after TF selection
 
   in_stats <- data.frame(RIs = get_ris_n(x@pred_set) + nrow(x@out_ris), TFs = get_tfs_n(x@pred_set) + length(x@out_tfs))
   out_stats <- summarize(x@pred_set)
 
-  write.table(in_stats, file=paste0(id_set, "/", id_set, "_in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
-  write.table(out_stats, file=paste0(id_set, "/", id_set, "_out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(in_stats, file=paste0("results/", id_set, "/", id_set, "_in_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(out_stats, file=paste0("results/", id_set, "/", id_set, "_out_stats.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   tfs_in <- EcoliGenes::bnumber_to_symbol(get_tfs_eval(x))
   tfs_out <- EcoliGenes::bnumber_to_symbol(x@out_tfs)
 
-  write.table(sort(tfs_in), file=paste0(id_set, "/", id_set, "_tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
-  if (length(tfs_out>=1)) { write.table(sort(tfs_out), file=paste0(id_set, "/tfs_out.tsv"), quote = F, col.names = F, row.names = F, sep = "\t") }
+  write.table(sort(tfs_in), file=paste0("results/", id_set, "/", id_set, "_tfs_in.tsv"), quote = F, col.names = F, row.names = F, sep = "\t")
+  if (length(tfs_out>=1)) { write.table(sort(tfs_out), file=paste0("results/", id_set, "/", id_set, "_tfs_out.tsv"), quote = F, col.names = F, row.names = F, sep = "\t") }
 
   ## Create tables with stats results
 
-  write.table(summarize_stats(x), file=paste0(id_set, "/", id_set, "_statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
-  write.table(generate_confusion_matrix(x), file=paste0(id_set, "/", id_set, "_confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(summarize_stats(x), file=paste0("results/", id_set, "/", id_set, "_statistics.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(generate_confusion_matrix(x), file=paste0("results/", id_set, "/", id_set, "_confusion_matrix.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
+  write.table(stats_per_tf(x), file=paste0("results/", id_set, "/", id_set, "_stats_per_tf.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   ## Save figures
 
-  pdf(paste0(id_set, "/", id_set, "_venn.pdf"))
+  pdf(paste0("results/", id_set, "/", id_set, "_venn.pdf"))
   gridExtra::grid.arrange(generate_venn_diagram(x, style=1, universe=FALSE))
   dev.off()
 
   if (length(x@pred_set@scores) >= 1) {
-    pdf(paste0(id_set, "/", id_set, "_roc.pdf"))
+    # pdf(paste0("results/", id_set, "/", id_set, "_roc.pdf"))
+    Cairo::Cairo(
+      20, #length
+      20, #width
+      file = paste0("results/", id_set, "/", id_set, "_roc.png"),
+      type = "png", #tiff
+      bg = "transparent", #white or transparent depending on your requirement
+      dpi = 200,
+      units = "cm" #you can change to pixels etc
+    )
     roc <- generate_roc_curve(x)
     plot(roc$curve)
     dev.off()
   }
 
   if (length(x@pred_set@scores) >= 1) {
-    pdf(paste0(id_set, "/", id_set, "_prc.pdf"))
+    # pdf(paste0("results/", id_set, "/", id_set, "_prc.pdf"))
+    # png(paste0("results/", id_set, "/", id_set, "_prc.png"))
+
+    Cairo::Cairo(
+      20, #length
+      20, #width
+      file = paste0("results/", id_set, "/", id_set, "_prc.png"),
+      type = "png", #tiff
+      bg = "transparent", #white or transparent depending on your requirement
+      dpi = 200,
+      units = "cm" #you can change to pixels etc
+    )
     prc <- generate_prc_curve(x)
     plot(prc$curve)
     dev.off()

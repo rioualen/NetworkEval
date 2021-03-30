@@ -106,7 +106,6 @@ cset <-  function(set, type, id) {
   stopifnot(type %in% c("positive", "negative"))
 
   new("cset", ris = set@ris, tfs = set@tfs, type = type, id = id)
-
 }
 
 #================================================================

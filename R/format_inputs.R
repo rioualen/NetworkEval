@@ -3,7 +3,7 @@
 #' @description Reads the control file and builds the object.
 #' @author Claire Rioualen
 #'
-#' @param id The path to a prediction file.
+#' @param id The id of a control set
 #' @param type Type from c("negative", "positive")
 #' @param dir Optional, by default internal directory "control_sets"
 #'
@@ -22,13 +22,19 @@ format_cset <- function(id, type, dir = "control_sets") {
 #' @author Claire Rioualen
 #'
 #' @param file The input prediction file, a 2+ column file with colnames: c("tf_bnum", "gene_bnum", ...)
+#' @param tfs TF list, a list of bnumbers
 #'
+#' @import EcoliGenes
 #' @export
-format_pset <- function(file) {
+format_pset <- function(file, tfs="") {
 	pred_data <- read.delim(file = file, stringsAsFactors=FALSE, header = T)
 	# pred_scores <- pred_data %>% dplyr::select(grep("score_", colnames(df)))
 	predicted_set_ris <- pred_data #%>% dplyr::select(tf_bnum, gene_bnum)
-	predicted_set_tfs <- unique(predicted_set_ris$tf_bnum) ## should be added the possibility of providing tf list separately
+	if (!tfs=="") {
+		predicted_set_tfs <- read.delim(file = tfs, stringsAsFactors=FALSE, header = F)$V1
+	} else {
+		predicted_set_tfs <- unique(predicted_set_ris$tf_bnum) ## should be added the possibility of providing tf list separately
+	}
 	predicted_set_scores <- colnames(pred_data)[grep("score_", colnames(pred_data))]##
 	predicted_set_id <- sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(file))
 	predicted_set <- pset(set(ris = predicted_set_ris, tfs = predicted_set_tfs), scores = predicted_set_scores, id = predicted_set_id)
