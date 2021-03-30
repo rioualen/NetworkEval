@@ -35,7 +35,7 @@ body{ /* Normal  */
 
 ```{r setup, eval=TRUE, echo=FALSE, results='hide', include=FALSE, warnings=FALSE}
 Sys.getenv("PATH")
-knitr::opts_knit$set(root.dir = "/Users/rioualen/Desktop/Git/NetworkEval")
+# knitr::opts_knit$set(root.dir = "/Users/rioualen/Desktop/Git/NetworkEval")
 knitr::opts_chunk$set(echo=FALSE, include=TRUE, warning=FALSE, message=FALSE, results = 'asis', fig.width = 10, fig.height = 6)
 
 
