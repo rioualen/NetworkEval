@@ -5,5 +5,7 @@
 *.DS_Store
 predictions/
 reports/
+results/
 eval_report.R
 report.Rmd
+R/report.R
