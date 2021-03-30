@@ -118,8 +118,8 @@ datatable(summary_df, rownames= FALSE, options = list(searching = FALSE, pageLen
   formatRound(c("Sensitivity", "Specificity", "Precision"), digits=3) %>%
   formatStyle('Sensitivity',  background = styleColorBar(range(summary_df$Sensitivity), 'burlywood')) %>%
   formatStyle('Specificity',  background = styleColorBar(range(summary_df$Specificity), 'burlywood')) %>%
-  formatStyle('Precision',  background = styleColorBar(range(summary_df$Precision), 'burlywood')) %>% 
-  formatStyle(  'Set_ID', 'group',  backgroundColor = styleEqual(c("control", "expression", "physical"), c('lightcoral', 'lightgreen', "lightblue")))
+  formatStyle('Precision',  background = styleColorBar(range(summary_df$Precision), 'burlywood')) #%>% 
+  #formatStyle(  'Set_ID', 'group',  backgroundColor = styleEqual(c("control", "expression", "physical"), c('lightcoral', 'lightgreen', "lightblue")))
 
 
 ```
