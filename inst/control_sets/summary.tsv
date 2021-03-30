@@ -1,6 +1,7 @@
 control_type	strategy	subset_number	set_description	person_in_charge	cset_id	Filename	status	# RIs	# issues
-positive	1	1	All strong regulatory interactions from RegulonDB (only the first gene in the TU)	Yuan	positive_1_1	pos_set_1.csv	done	"1,056"	0
-positive	2	1	All strong regulatory interactions from RegulonDB (including all the genes in the TU with the maximum number of genes)	Yuan	positive_2_1	pos_set_2.csv	done	"2,406"	6
-negative	1	1	"Complement of reachable genes in positive set (TF-gene pairs that are not known in regulonDB, weak or strong)"	Yuan	negative_1_1	neg_set_1.csv	done	"809,547"	"3,072"
-negative	2	1	Interactions between any TF and constitutive genes	Laura	negative_2_1	NegativeSet-ConstitutiveGenes-Range100.txt	done	"23,541"	0
-negative	2	2	Interactions between any TF and constitutive genes	Laura	negative_2_2	NegativeSet-ConstitutiveGenes-Range250.txt	done	"68,861"	0
+positive	2	1	All strong regulatory interactions from RegulonDB (including all the genes in the TU with the maximum number of genes)	Claire	positive_2_1	positive_2_1.tsv	done	"2,746"	
+positive	2	2	All weak regulatory interactions from RegulonDB (including all the genes in the TU with the maximum number of genes)	Claire	positive_2_2	positive_2_2.tsv	done	"1,758"	
+positive	2	3	All regulatory interactions from RegulonDB (including all the genes in the TU with the maximum number of genes)	Claire	positive_2_3	positive_2_3.tsv	done	"4,509"	
+negative	1	1	"Complement of reachable genes in positive set (TF-gene pairs that are not known in regulonDB, weak or strong)"	Yuan	negative_1_1	neg_set_1.csv	done	"870,996"	
+negative	2	1	Interactions between any TF and constitutive genes	Laura	negative_2_1	NegativeSet-ConstitutiveGenes-Range100.txt	done	"23,540"	
+negative	2	2	Interactions between any TF and constitutive genes	Laura	negative_2_2	NegativeSet-ConstitutiveGenes-Range250.txt	done	"68,860"	
