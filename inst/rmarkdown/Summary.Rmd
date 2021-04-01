@@ -182,12 +182,18 @@ cat(paste0("![](", results_dir, "/summary_report/histogram.png)"), "\n")
 # data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
 # plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
 
+cat(paste0("![](", results_dir, "/summary_report/venn1.png)"), "\n")
+cat(paste0("![](", results_dir, "/summary_report/venn2.png)"), "\n")
+
 
 ```
 
 ## Upset 
 
 ```{r show-upset, eval=TRUE, fig.width=8, fig.height=4}
+
+cat(paste0("![](", results_dir, "/summary_report/upset.png)"), "\n")
+
 # data_all <- list()
 # all_sets <- data.frame(matrix(ncol=3), stringsAsFactors = F)
 # colnames(all_sets) <- c("tf_bnum", "gene_bnum", "pair")

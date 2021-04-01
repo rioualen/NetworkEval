@@ -135,13 +135,16 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 	dev.off()
 
 	data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
+	png(paste0(summary_dir, "/venn2.png"),   width= 3,height= 3,units= "in",res= 150)
 	plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
-		## Upset
-
+	dev.off()
+	## Upset
+	png(paste0(summary_dir, "/upset.png"),   width= 3,height= 3,units= "in",res= 150)
 	upset(fromList(data_bis), nsets = length(data_bis), number.angles = 30, point.size = 3, line.size = 2,
 				mainbar.y.label = "Sets Intersections", sets.x.label = "Set IDs",
 				text.scale = c(2, 2, 2, 1, 1.5, 1.2), order.by='freq')
-		## Categories
+	dev.off()
+	## Categories
 
 
 	## produce report // right now it only works locally
