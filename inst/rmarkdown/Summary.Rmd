@@ -129,59 +129,58 @@ datatable(summary_df, rownames= FALSE, options = list(searching = FALSE, pageLen
 
 ## Histograms
 
-```{r histograms, eval=TRUE, fig.height=8}
+```{r histograms, eval=TRUE}
 
-long <- tidyr::gather(summary_df, "variable", "value", c("Sensitivity", "Specificity", "Precision"))
-long <- long %>% dplyr::mutate(group=ifelse(grepl("expression", Set_ID), "expression", ifelse(grepl("physical", Set_ID), "physical", "control")))
-long$variable <- factor(long$variable, levels = c("Sensitivity", "Specificity", "Precision"))
+# long <- tidyr::gather(summary_df, "variable", "value", c("Sensitivity", "Specificity", "Precision"))
+# long <- long %>% dplyr::mutate(group=ifelse(grepl("expression", Set_ID), "expression", ifelse(grepl("physical", Set_ID), "physical", "control")))
+# long$variable <- factor(long$variable, levels = c("Sensitivity", "Specificity", "Precision"))
+# 
+# 
+# ggplot(long, aes(x = Set_ID, y = value)) + 
+#   geom_bar(stat = "identity") + 
+#   geom_col(aes(fill = group)) +
+#   scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
+#   # scale_color_brewer(palette="Dark2") +
+#   # scale_color_manual(values=c("#000000", "#E69F00", "#56B4E9")) +
+#   # scale_x_discrete(limits = rev(levels(cpxr.data$Method))) +
+#   scale_fill_manual(values = c( "#60AE20", "#00AFBB"), guide=guide_legend(reverse=T)) +
+#   theme(axis.text.y = element_text(size=10), axis.title.x = element_blank(), legend.title = element_blank(), strip.text.x = element_text(size = 14), strip.text.y = element_text(size = 14), axis.title.y = element_blank(), legend.position="none", legend.text = element_text(size = 11), legend.direction="vertical", axis.text.x = element_text(angle = 90, hjust=1, size=12)) +
+#   facet_grid(variable ~ .)
 
+cat(paste0("![](", results_dir, "/summary_report/histogram.png)"), "\n")
 
-ggplot(long, aes(x = Set_ID, y = value)) + 
-  geom_bar(stat = "identity") + 
-  geom_col(aes(fill = group)) +
-  scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
-  # scale_color_brewer(palette="Dark2") +
-  # scale_color_manual(values=c("#000000", "#E69F00", "#56B4E9")) +
-  # scale_x_discrete(limits = rev(levels(cpxr.data$Method))) +
-  scale_fill_manual(values = c( "#60AE20", "#00AFBB"), guide=guide_legend(reverse=T)) +
-  theme(axis.text.y = element_text(size=10), axis.title.x = element_blank(), legend.title = element_blank(), strip.text.x = element_text(size = 14), strip.text.y = element_text(size = 14), axis.title.y = element_blank(), legend.position="none", legend.text = element_text(size = 11), legend.direction="vertical", axis.text.x = element_text(angle = 90, hjust=1, size=12)) +
-  facet_grid(variable ~ .)
-
-
-# hist(summary_df$Sensitivity, col="#345623", main = "Sensitivity", xlim = c(-1, 1)
-# hist(summary_df$Specificity, col="#345678", main="Specificity", xlim = c(-1, 1), breaks = 13)
 ```
 
 ## Venn
 
 ```{r venn, eval=TRUE, fig.width=8, fig.height=4}
 
-positive_set <- read.delim(file = system.file("control_sets", "all_positive.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
-positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
-positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
-positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
-
-negative_set <- read.delim(file = system.file("control_sets", "all_negative.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
-negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
-negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
-negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
-
-prediction_set <- data.frame(matrix(ncol=2), stringsAsFactors = F)
-colnames(prediction_set) <- c("tf_bnum", "gene_bnum")
-for(s in set_ids) {
-  ris <- read.delim(file = paste0(predictions_dir, "/", s, ".tsv"), header=T, stringsAsFactors=FALSE)[c("tf_bnum", "gene_bnum")]
-  prediction_set <- rbind.data.frame(prediction_set, ris)
-}
-prediction_set <- prediction_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
-prediction_set <- prediction_set %>% dplyr::arrange(tf_bnum, gene_bnum)
-prediction_set <- prediction_set %>% dplyr::distinct(pair, .keep_all = TRUE)
-
-
-data <- list(Predictions=prediction_set$pair, Positive=positive_set$pair)
-plot(euler(data, shape = "ellipse"), fills =  c("lightblue", "lightcoral"), quantities=T)
-
-data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
-plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
+# positive_set <- read.delim(file = system.file("control_sets", "all_positive.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+# positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+# positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+# positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+# 
+# negative_set <- read.delim(file = system.file("control_sets", "all_negative.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+# negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+# negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+# negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+# 
+# prediction_set <- data.frame(matrix(ncol=2), stringsAsFactors = F)
+# colnames(prediction_set) <- c("tf_bnum", "gene_bnum")
+# for(s in set_ids) {
+#   ris <- read.delim(file = paste0(predictions_dir, "/", s, ".tsv"), header=T, stringsAsFactors=FALSE)[c("tf_bnum", "gene_bnum")]
+#   prediction_set <- rbind.data.frame(prediction_set, ris)
+# }
+# prediction_set <- prediction_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+# prediction_set <- prediction_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+# prediction_set <- prediction_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+# 
+# 
+# data <- list(Predictions=prediction_set$pair, Positive=positive_set$pair)
+# plot(euler(data, shape = "ellipse"), fills =  c("lightblue", "lightcoral"), quantities=T)
+# 
+# data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
+# plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
 
 
 ```

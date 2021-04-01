@@ -27,7 +27,7 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 
 
 	## Generate additional output files
-	## summary
+	## Summary
 
 	Set_ID <- c()
 	RIs_input <- c()
@@ -71,7 +71,71 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 	}
 	write.table(summary_df, file = paste0(summary_dir, "/summary_table.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
 	#summary_df <- summary_df %>% dplyr::mutate(group=ifelse(grepl("expression", Set_ID), "expression", ifelse(grepl("physical", Set_ID), "physical", "control")))
-		## Venn
+
+	## Histogram
+
+	long <- tidyr::gather(summary_df, "variable", "value", c("Sensitivity", "Specificity", "Precision"))
+	#long <- long %>% dplyr::mutate(group=ifelse(grepl("expression", Set_ID), "expression", ifelse(grepl("physical", Set_ID), "physical", "control")))
+	long$variable <- factor(long$variable, levels = c("Sensitivity", "Specificity", "Precision"))
+
+	ggplot(long, aes(x = Set_ID, y = value)) +
+		geom_bar(stat = "identity", fill = "royalblue") +
+		#geom_col(aes(fill = group)) +
+		scale_fill_manual(guide=guide_legend(reverse=T)) +
+		theme(axis.text.y = element_text(size=10), axis.title.x = element_blank(), legend.title = element_blank(), strip.text.x = element_text(size = 10), strip.text.y = element_text(size = 10), axis.title.y = element_blank(), legend.position="none", legend.text = element_text(size = 11), legend.direction="vertical", axis.text.x = element_text(angle = 90, hjust=1, size=10)) +
+		facet_grid(variable ~ .)
+	# png(paste0(summary_dir, "/histogram.png"))
+	# print(p)
+	# dev.off()
+	ggsave(paste0(summary_dir, "/histogram.png"), device="png", width = 6, height = 4)
+
+	# Cairo::Cairo(
+	# 	20, #length
+	# 	20, #width
+	# 	file = paste0(summary_dir, "/histogram.png"),
+	# 	type = "png", #tiff
+	# 	bg = "transparent", #white or transparent depending on your requirement
+	# 	dpi = 200,
+	# 	units = "cm" #you can change to pixels etc
+	# )
+	# ggplot(long, aes(x = Set_ID, y = value)) +
+	# 	geom_bar(stat = "identity", fill = "royalblue") +
+	# 	#geom_col(aes(fill = group)) +
+	# 	scale_fill_manual(guide=guide_legend(reverse=T)) +
+	# 	theme(axis.text.y = element_text(size=10), axis.title.x = element_blank(), legend.title = element_blank(), strip.text.x = element_text(size = 14), strip.text.y = element_text(size = 14), axis.title.y = element_blank(), legend.position="none", legend.text = element_text(size = 11), legend.direction="vertical", axis.text.x = element_text(angle = 90, hjust=1, size=12)) +
+	# 	facet_grid(variable ~ .)
+	# dev.off()
+
+	## Venn to update ++++
+
+	positive_set <- read.delim(file = system.file("control_sets", "all_positive.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+
+	negative_set <- read.delim(file = system.file("control_sets", "all_negative.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+
+	prediction_set <- data.frame(matrix(ncol=2), stringsAsFactors = F)
+	colnames(prediction_set) <- c("tf_bnum", "gene_bnum")
+	for(s in set_ids) {
+		ris <- read.delim(file = paste0(predictions_dir, "/", s, ".tsv"), header=T, stringsAsFactors=FALSE)[c("tf_bnum", "gene_bnum")]
+		prediction_set <- rbind.data.frame(prediction_set, ris)
+	}
+	prediction_set <- prediction_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	prediction_set <- prediction_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	prediction_set <- prediction_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+
+
+	data <- list(Predictions=prediction_set$pair, Positive=positive_set$pair)
+	png(paste0(summary_dir, "/venn1.png"),   width= 3,height= 3,units= "in",res= 150)
+	plot(euler(data, shape = "ellipse"), fills =  c("lightblue", "lightcoral"), quantities=T)
+	dev.off()
+
+	data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
+	plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
 		## Upset
 		## Categories
 
