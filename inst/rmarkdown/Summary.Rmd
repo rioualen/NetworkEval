@@ -199,9 +199,9 @@ cat(paste0("![](", results_dir, "/summary_report/histogram.png)"), "\n")
 # }
 # 
 # if (length(set_ids) > 1) {
-  upset(fromList(data_bis), nsets = length(data_bis), number.angles = 30, point.size = 3, line.size = 2, 
-      mainbar.y.label = "Sets Intersections", sets.x.label = "Set IDs", 
-      text.scale = c(2, 2, 2, 1, 1.5, 1.2), order.by='freq')#, 
+  # upset(fromList(data_bis), nsets = length(data_bis), number.angles = 30, point.size = 3, line.size = 2, 
+  #     mainbar.y.label = "Sets Intersections", sets.x.label = "Set IDs", 
+  #     text.scale = c(2, 2, 2, 1, 1.5, 1.2), order.by='freq')#, 
 #       #sets.bar.color=c("lightgreen", "lightgreen", "lightblue", "lightgreen", "lightgreen", "lightgreen", "lightblue",  "lightgreen", "lightcoral", "lightblue"))
 # } else {
 #   cat("\n\n This requires a minimum of 2 prediction sets.\n\n")

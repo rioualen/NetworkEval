@@ -137,6 +137,10 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 	data_bis <- list(Predictions=prediction_set$pair, Positive=positive_set$pair, Negative=negative_set$pair)
 	plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
 		## Upset
+
+	upset(fromList(data_bis), nsets = length(data_bis), number.angles = 30, point.size = 3, line.size = 2,
+				mainbar.y.label = "Sets Intersections", sets.x.label = "Set IDs",
+				text.scale = c(2, 2, 2, 1, 1.5, 1.2), order.by='freq')
 		## Categories
 
 
