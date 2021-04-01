@@ -108,15 +108,31 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 
 	## Venn to update ++++
 
-	positive_set <- read.delim(file = system.file("control_sets", paste0(pos_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
-	positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
-	positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
-	positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+	# positive_set <- read.delim(file = system.file("control_sets", paste0(pos_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	# positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	# positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	# positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+	#
+	# negative_set <- read.delim(file = system.file("control_sets", paste0(neg_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	# negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	# negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	# negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
 
-	negative_set <- read.delim(file = system.file("control_sets", paste0(neg_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
-	negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	negative_set <- format_cset(id = neg_set_id, type = "negative")
+	positive_set <- format_cset(id = pos_set_id, type = "positive")
+	predicted_set <- format_pset(file = testfile, tfs = tfs)
+
+	## filter out tfs that are not present in all 3 sets
+	filtered_sets <- select_tfs(negative_set, positive_set, predicted_set)
+
+	negative_set <- filtered_sets$neg_set@ris %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
 	negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
 	negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
+
+
+	positive_set <- filtered_sets$pos_set@ris %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
+	positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
+	positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
 
 	prediction_set <- data.frame(matrix(ncol=2), stringsAsFactors = F)
 	colnames(prediction_set) <- c("tf_bnum", "gene_bnum")
@@ -139,7 +155,7 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 	plot(euler(data_bis, shape = "circle"), fills =  c("lightblue", "lightcoral", "white"))
 	dev.off()
 	## Upset
-	png(paste0(summary_dir, "/upset.png"),   width= 3,height= 3,units= "in",res= 150)
+	png(paste0(summary_dir, "/upset.png"),   width= 6,height= 3,units= "in",res= 150)
 	upset(fromList(data_bis), nsets = length(data_bis), number.angles = 30, point.size = 3, line.size = 2,
 				mainbar.y.label = "Sets Intersections", sets.x.label = "Set IDs",
 				text.scale = c(2, 2, 2, 1, 1.5, 1.2), order.by='freq')
