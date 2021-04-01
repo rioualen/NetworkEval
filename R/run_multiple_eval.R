@@ -3,8 +3,8 @@
 #' @description Format the input prediction set, filters it, and generates an evaluation report.
 #' @author Claire Rioualen
 #' @param testfile The path to a prediction file.
-#' @param neg_set_id Optional, the ID of the negative set to be used from c("all_negative", "test_neg")
-#' @param pos_set_id Optional, the ID of the positive set to be used from c("all_positive", "test_pos")
+#' @param neg_set_id Optional, the ID of the negative set to be used from c("all_negative", "test_neg", "negative_1_1", "negative_2_1", "negative_2_2")
+#' @param pos_set_id Optional, the ID of the positive set to be used from c("all_positive", "test_pos", "positive_2_1", "positive_2_2", "positive_2_3")
 #'
 #' @import rmarkdown
 #' @export
@@ -108,12 +108,12 @@ run_multiple_eval <- function(predictions_dir, results_dir = "results", category
 
 	## Venn to update ++++
 
-	positive_set <- read.delim(file = system.file("control_sets", "all_positive.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	positive_set <- read.delim(file = system.file("control_sets", paste0(pos_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
 	positive_set <- positive_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
 	positive_set <- positive_set %>% dplyr::arrange(tf_bnum, gene_bnum)
 	positive_set <- positive_set %>% dplyr::distinct(pair, .keep_all = TRUE)
 
-	negative_set <- read.delim(file = system.file("control_sets", "all_negative.tsv", package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
+	negative_set <- read.delim(file = system.file("control_sets", paste0(neg_set_id, ".tsv"), package = "NetworkEval"), header=T, stringsAsFactors=FALSE)
 	negative_set <- negative_set %>% dplyr::mutate(pair= paste0(tf_bnum, "_", gene_bnum))
 	negative_set <- negative_set %>% dplyr::arrange(tf_bnum, gene_bnum)
 	negative_set <- negative_set %>% dplyr::distinct(pair, .keep_all = TRUE)
