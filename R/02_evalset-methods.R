@@ -760,8 +760,17 @@ output_files <- function(x) {
   write.table(stats_per_tf(x), file=paste0("results/", id_set, "/", id_set, "_stats_per_tf.tsv"), quote = F, col.names = T, row.names = F, sep = "\t")
 
   ## Save figures
-
-  pdf(paste0("results/", id_set, "/", id_set, "_venn.pdf"))
+  # pdf(paste0("results/", id_set, "/", id_set, "_roc.pdf"))
+  # Cairo::Cairo(
+  #   20, #length
+  #   20, #width
+  #   file = paste0("results/", id_set, "/", id_set, "_venn.png"),
+  #   type = "png", #tiff
+  #   bg = "transparent", #white or transparent depending on your requirement
+  #   dpi = 200,
+  #   units = "cm" #you can change to pixels etc
+  # )
+  png(paste0("results/", id_set, "/", id_set, "_venn.png"))
   gridExtra::grid.arrange(generate_venn_diagram(x, style=1, universe=FALSE))
   dev.off()
 

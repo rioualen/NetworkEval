@@ -3,8 +3,8 @@
 #' @description Format the input prediction set, filters it, and generates an evaluation report.
 #' @author Claire Rioualen
 #' @param testfile The path to a prediction file.
-#' @param neg_set_id Optional, the ID of the negative set to be used from c("all_negative", "test_neg")
-#' @param pos_set_id Optional, the ID of the positive set to be used from c("all_positive", "test_pos")
+#' @param neg_set_id Optional, the ID of the negative set to be used from c("all_negative", "test_neg", "non_reachable", "constitutive_1", "constitutive_2")
+#' @param pos_set_id Optional, the ID of the positive set to be used from c("all_positive", "test_pos", "strong_positive", "weak_positive")
 #'
 #' @import rmarkdown
 #' @export
@@ -31,5 +31,6 @@ run_eval <- function(testfile, tfs="", neg_set_id = "all_negative", pos_set_id =
 
 	## produce report // right now it only works locally
 	# rmarkdown::render("report.Rmd", params = list(evalset = my_eval), output_file = paste0("reports/", predicted_set@id, ".html"))
+	my_eval
 }
 
