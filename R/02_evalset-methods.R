@@ -547,7 +547,8 @@ setMethod("generate_roc_curve",
             pos <- pos %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
             neg <- neg %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum))
 
-            pred_data <- pred_data %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>% dplyr::mutate(labels = ifelse(pair %in% pos$pair,1,ifelse(pair %in% neg$pair,0,NA))) %>%
+            pred_data <- pred_data %>% dplyr::mutate(pair=paste0(tf_bnum, "_", gene_bnum)) %>%
+              dplyr::mutate(labels = ifelse(pair %in% pos$pair,1,ifelse(pair %in% neg$pair,0,NA))) %>%
               dplyr::select(-pair)
 
             long_data <- reshape2::melt(pred_data %>% dplyr::select(!!score_names, labels), id="labels")
@@ -555,15 +556,26 @@ setMethod("generate_roc_curve",
             ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
               geom_roc(labels = T, size=0.5, n.cuts = 0) +
               style_roc(theme = theme_grey) +
-              scale_x_continuous(name = "False negative count",
-                                 labels = function(y){format(y*false_pos(x))},
-                                 sec.axis = sec_axis(~ .x, labels = NULL),
-                                 expand = c(0,0)) +
-              theme_bw() +
+              scale_x_continuous(breaks=seq(0, 1, 0.1),
+                                 limits = c(0, 1),
+                                 name = "False negative rate",
+                                 sec.axis = sec_axis(~ .x,
+                                                     name = "False negative count",
+                                                     labels = function(y){format(y*false_pos(x), digits = 0)})) +
+              scale_y_continuous(name = "True positive rate",
+                                 # breaks = 1:11,
+                                 breaks=(seq(0, 1, 0.1)),
+                                 limits = c(0, 1),
+                                 sec.axis = sec_axis(~ .x,
+                                                     labels = function(y){format(y*true_pos(x), digits = 0)},
+                                                     name = "True positive count")) +
               theme(axis.ticks.length = unit(5, "pt"),
-                    axis.ticks.length.x.top = unit(-5, "pt"),
-                    axis.ticks.length.y.right = unit(-5, "pt"),
-                    panel.grid = element_blank())
+                    # axis.ticks.length.x.top = unit(-5, "pt"),
+                    # axis.ticks.length.y.right = unit(-5, "pt"),
+                    # panel.grid = element_blank(),
+                    axis.text = element_text(size = 14),
+                    axis.title = element_text(size = 14),
+                    legend.text = element_text(size = 12))
             # scale_x_discrete(breaks = 10, limits = c("a", "b"))
               #scale_x_continuous("test", 100, 1:100, c(1, 100))
             # scale_x_continuous("test", false_pos(x), 1:false_pos(x), c(1, false_pos(x)))
@@ -572,8 +584,7 @@ setMethod("generate_roc_curve",
             colors <- scales::hue_pal()(13)
 
             ggroc <- ggroc +
-              scale_color_manual(labels = paste0(levels(long_data$variable), " (AUC = ", AUC, ")"), values = colors, name = "Score type") +
-              theme(axis.text=element_text(size=14), axis.title=element_text(size=14), legend.text=element_text(size=12))
+              scale_color_manual(labels = paste0(levels(long_data$variable), " (AUC = ", AUC, ")"), values = colors, name = "Score type")
 
             auc <- cbind.data.frame(score_names, AUC)
             list(curve=ggroc, auc=auc)
