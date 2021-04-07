@@ -32,7 +32,7 @@ run_report <- function(predictions_dir, results_dir = "results", category = "tes
 		dir.create(summary_dir)
 	}
 
-	summary_df <- summary_table(set_ids, summary_dir)
+	summary_df <- summary_table(set_ids, results_dir)
 
 	## Histogram
 
@@ -59,7 +59,7 @@ run_report <- function(predictions_dir, results_dir = "results", category = "tes
 #' @param results_dir Name of the summary directory.
 #'
 #' @export
-summary_table <- function(set_ids, summary_dir) {
+summary_table <- function(set_ids, results_dir) {
 	Set_ID <- c()
 	RIs_input <- c()
 	TFs_input <- c()
@@ -96,7 +96,7 @@ summary_table <- function(set_ids, summary_dir) {
 
 	summary_df <- data.frame(Set_ID , RIs_input, TFs_input, RIs_TFfiltered, TFs_filtered, RIs_RIfiltered, Sensitivity, Specificity, Precision, TP, FP, stringsAsFactors=F)
 
-	write.table(summary_df, file = paste0(summary_dir, "/summary_table.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
+	write.table(summary_df, file = paste0(results_dir, "/summary_report/summary_table.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
 	summary_df
 }
 
