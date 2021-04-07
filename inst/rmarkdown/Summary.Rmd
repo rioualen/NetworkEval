@@ -80,7 +80,7 @@ cat(paste0("![](", results_dir, "/summary_report/upset.png)"), "\n")
 
 # Datasets
 
-```{r case-by-case, eval=TRUE}
+```{r case-by-case, eval=TRUE, results = 'asis' fig.keep='none'}
 
 for(s in set_ids) {
      cat(paste0("\n## ", s, " {.tabset}"))

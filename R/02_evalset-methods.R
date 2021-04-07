@@ -553,8 +553,20 @@ setMethod("generate_roc_curve",
             long_data <- reshape2::melt(pred_data %>% dplyr::select(!!score_names, labels), id="labels")
 
             ggroc <- ggplot(long_data, aes(m = value, d = labels, color = variable)) +
-              geom_roc(labels = F, size=0.5, n.cuts = 0) +
-              style_roc(theme = theme_grey)
+              geom_roc(labels = T, size=0.5, n.cuts = 0) +
+              style_roc(theme = theme_grey) +
+              scale_x_continuous(name = "False negative count",
+                                 labels = function(y){format(y*false_pos(x))},
+                                 sec.axis = sec_axis(~ .x, labels = NULL),
+                                 expand = c(0,0)) +
+              theme_bw() +
+              theme(axis.ticks.length = unit(5, "pt"),
+                    axis.ticks.length.x.top = unit(-5, "pt"),
+                    axis.ticks.length.y.right = unit(-5, "pt"),
+                    panel.grid = element_blank())
+            # scale_x_discrete(breaks = 10, limits = c("a", "b"))
+              #scale_x_continuous("test", 100, 1:100, c(1, 100))
+            # scale_x_continuous("test", false_pos(x), 1:false_pos(x), c(1, false_pos(x)))
 
             AUC <- round(calc_auc(ggroc)$AUC, 3)
             colors <- scales::hue_pal()(13)
